@@ -36,6 +36,10 @@ namespace OurDotnetApp
 
             var greeting = $"It is a pleasure to meet you, {name}";
             Console.WriteLine(greeting);
+
+            Console.Write("What is your favorite number? ");
+            var firstNumberAsString = Console.ReadLine();
+
         }
     }
 }
