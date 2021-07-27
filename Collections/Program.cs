@@ -43,6 +43,32 @@ namespace Collections
             var indexOfTwelve = scores.IndexOf(12);
             Console.WriteLine($"Found 12 at index {indexOfTwelve}");
 
+            var playerScores = new Dictionary<string, int>();
+
+            playerScores.Add("Robbie Lakeman", 1_247_700);
+
+            // This is an ERROR since Robbie is already ADDed
+            // playerScores.Add("Robbie Lakeman", 3);
+
+            // Look up Robbie Lakeman and CHANGE his score
+            playerScores["Robbie Lakeman"] = 3;
+
+            // Look up Gavin Stark and set his score, doesn't
+            // matter that we haven't added him yet.
+            playerScores["Gavin Stark"] = 42;
+
+            var robbiePlayerScore = playerScores["Robbie Lakeman"];
+            Console.WriteLine(robbiePlayerScore);
+
+            var gavinScore = playerScores["Gavin Stark"];
+            Console.WriteLine($"Gavin's score is {gavinScore}");
+
+            var hasKey = playerScores.ContainsKey("Billy Mitchell");
+            if (hasKey == true)
+            {
+                var billyScore = playerScores["Billy Mitchell"];
+                Console.Write(billyScore);
+            }
         }
     }
 }
