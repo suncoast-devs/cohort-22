@@ -77,6 +77,24 @@ namespace Collections
 
             var firstStudent = students.Dequeue();
             Console.WriteLine(firstStudent);
+
+            Console.Write("What is your name? (type quit to end) ");
+
+            // When we write this:
+            //
+            // var name = Console.ReadLine();
+            //
+            // C# is _REALLY_ doing this for us:
+            string name;
+            name = Console.ReadLine();
+
+            while (name != "quit")
+            {
+                Console.WriteLine($"Hello {name}");
+
+                Console.Write("What is your name? ");
+                name = Console.ReadLine();
+            }
         }
     }
 }
