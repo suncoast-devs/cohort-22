@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Collections
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to C#");
+
+            var names = new List<string>() { "Mark", "Paula", "Sandy", "Bill" };
+
+            var firstName = names[0];
+            var secondName = names[1];
+            var finalName = names[3];
+
+            Console.WriteLine(firstName);
+            Console.WriteLine(names.Count);
+
+            names.Add("George");
+            Console.WriteLine(names.Count);
+
+            names.Insert(2, "Frank"); // "Mark", "Paula", "Frank", "Sandy", "Bill", "George"
+            Console.WriteLine(names);
+
+            var scores = new List<int>();
+            scores.Add(12);
+            scores.Add(100);
+            scores.Add(55);
+            scores.Add(44);
+            scores.Add(12);
+
+            var lastIndex = scores.Count - 1;
+            var lastScore = scores[lastIndex];
+
+            var indexOfFiftyFive = scores.IndexOf(55);
+            Console.WriteLine($"Found 55 at index {indexOfFiftyFive}");
+
+            var indexOfFourtyTwo = scores.IndexOf(42);
+            Console.WriteLine($"Found 42 at index {indexOfFourtyTwo}");
+
+            var indexOfTwelve = scores.IndexOf(12);
+            Console.WriteLine($"Found 12 at index {indexOfTwelve}");
+
+        }
+    }
+}
