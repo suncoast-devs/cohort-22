@@ -69,6 +69,14 @@ namespace Collections
                 var billyScore = playerScores["Billy Mitchell"];
                 Console.Write(billyScore);
             }
+
+            var students = new Queue<string>();
+            students.Enqueue("Mary");
+            students.Enqueue("Bill");
+            students.Enqueue("Paul");
+
+            var firstStudent = students.Dequeue();
+            Console.WriteLine(firstStudent);
         }
     }
 }
