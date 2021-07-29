@@ -24,7 +24,13 @@ namespace Methods
     public string Name { get; set; }
     public int Department { get; set; }
     public int Salary { get; set; }
-    public int MonthlySalary { get; set; }
+
+    public int MonthlySalary()
+    {
+      int computedMonthlySalary = Salary / 12;
+
+      return computedMonthlySalary;
+    }
 
     // // This is a *special* method known as a "constructor"
     // // The constructor is called when we write a line like: `var bob = new Employee(`
@@ -93,10 +99,6 @@ namespace Methods
       }
     }
 
-    static int ComputeMonthlySalary(int yearlySalary)
-    {
-      return yearlySalary / 12;
-    }
 
     static void Main(string[] args)
     {
@@ -106,7 +108,6 @@ namespace Methods
       {
         Name = "Grace Hopper",
         Salary = 240_000,
-        MonthlySalary = 20_000,
         Department = 100,
       };
 
@@ -174,15 +175,14 @@ namespace Methods
         var name = PromptForString("What is your name? ");
         var department = PromptForInteger("What is your department number? ");
         var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
-        var monthlySalary = ComputeMonthlySalary(salary);
 
         // Make a new Employee object and fill in their details from the variables above.
         var newEmployee = new Employee();
-        newEmployee.MonthlySalary = monthlySalary;
         newEmployee.Name = name;
         newEmployee.Department = department;
         newEmployee.Salary = salary;
 
+        Console.WriteLine($"By the way, their monthly salary is {newEmployee.MonthlySalary()}");
         // Slap that employee on the end of our list
         employeeList.Add(newEmployee);
 
