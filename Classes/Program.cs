@@ -21,31 +21,31 @@ namespace Methods
     // |   |      |
     // |   |      |
     // v   v      v
-    public string Name;
-    public int Department;
-    public int Salary;
-    public int MonthlySalary;
+    public string Name { get; set; }
+    public int Department { get; set; }
+    public int Salary { get; set; }
+    public int MonthlySalary { get; set; }
 
-    // This is a *special* method known as a "constructor"
-    // The constructor is called when we write a line like: `var bob = new Employee(`
-    // The arguments to the method should line up to those below
-    //
-    //              This will become the employee's name
-    //              |               This will become the employee's department
-    //              |               |                  This will become the employee's salary
-    //              |               |                  |              This will become the employee's monthly salary
-    //              |               |                  |              |
-    //              v               v                  v              v
-    public Employee(string newName, int newDepartment, int newSalary, int newMonthlySalary)
-    {
-      // In the constructor we should setup the values for any of the properties.
-      // Here we will *copy* the values given by the arguments to the corresponding property.
+    // // This is a *special* method known as a "constructor"
+    // // The constructor is called when we write a line like: `var bob = new Employee(`
+    // // The arguments to the method should line up to those below
+    // //
+    // //              This will become the employee's name
+    // //              |               This will become the employee's department
+    // //              |               |                  This will become the employee's salary
+    // //              |               |                  |              This will become the employee's monthly salary
+    // //              |               |                  |              |
+    // //              v               v                  v              v
+    // public Employee(string newName, int newDepartment, int newSalary, int newMonthlySalary)
+    // {
+    //   // In the constructor we should setup the values for any of the properties.
+    //   // Here we will *copy* the values given by the arguments to the corresponding property.
 
-      Name = newName;
-      Department = newDepartment;
-      Salary = newSalary;
-      MonthlySalary = newMonthlySalary;
-    }
+    //   Name = newName;
+    //   Department = newDepartment;
+    //   Salary = newSalary;
+    //   MonthlySalary = newMonthlySalary;
+    // }
   }
 
 
@@ -100,24 +100,65 @@ namespace Methods
 
     static void Main(string[] args)
     {
+      var scores = new List<int>() { 42, 100, 55, 99, 200 };
 
-      var graceHopper = new Employee("Grace Hopper", 100, 240_000, 20_000);
-      Console.WriteLine(graceHopper.Department);
-
-      var elonMusk = new Employee("Elon Musk", 42, 120_000, 10_000);
-      Console.WriteLine(elonMusk.Department);
-
-      var scores = new List<int>() { 42, 100, 55 };
-
-      var employees = new List<Employee>() {
-         graceHopper,
-         elonMusk,
-         new Employee("Gavin Stark", 42, 12_000, 1_000)
+      var graceHopper = new Employee()
+      {
+        Name = "Grace Hopper",
+        Salary = 240_000,
+        MonthlySalary = 20_000,
+        Department = 100,
       };
-      // employees.Add(graceHopper);
-      // employees.Add(elonMusk);
 
-      employees.RemoveAt(0);
+      // Braces free creation of a new object
+      var elonMusk = new Employee();
+      elonMusk.Name = "Elon Musk";
+
+      // Braces using creation of a new object
+      // Creates *AND* initializes the object.
+      //
+      // Just like:
+      // var scores = new List<int>() { 1, 2, 3, 4};
+      //
+      // Creates new list and puts a few numbers in it.
+      var gavin = new Employee()
+      {
+        Name = "Gavin Stark"
+      };
+
+      // Braces initialization of a list containing three employees
+      //
+      // var scores = new List<int>() { 1, 2, 3};
+      var employees = new List<Employee>()
+      {
+        gavin,
+        elonMusk,
+        graceHopper
+      };
+
+      var employeesNoBraces = new List<Employee>();
+      employeesNoBraces.Add(gavin);
+      employeesNoBraces.Add(elonMusk);
+      employeesNoBraces.Add(graceHopper);
+
+      // Complex syntax to make a new list and three
+      // employees ALL AT ONCE.
+      var allInOne = new List<Employee>() {
+        new Employee() {
+          Name = "Elon Musk"
+        },
+
+        new Employee() {
+          Name = "Grace Hopper"
+        },
+
+        new Employee() {
+          Name = "Gavin"
+        }
+      };
+
+
+
       DisplayGreeting();
 
       var name = PromptForString("What is your name? ");
