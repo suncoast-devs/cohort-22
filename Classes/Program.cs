@@ -93,7 +93,7 @@ namespace Methods
       }
     }
 
-    static int ComputeMonthlySalaryFromYearly(int yearlySalary)
+    static int ComputeMonthlySalary(int yearlySalary)
     {
       return yearlySalary / 12;
     }
@@ -161,15 +161,38 @@ namespace Methods
 
       DisplayGreeting();
 
-      var name = PromptForString("What is your name? ");
+      var employeeList = new List<Employee>();
 
-      var department = PromptForInteger("What is your department number? ");
+      bool keepGoing = true;
 
-      var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+      while (keepGoing)
+      {
+        Console.WriteLine($"---- You have {employeeList.Count} employees ----");
+        Console.WriteLine();
 
-      var salaryPerMonth = ComputeMonthlySalaryFromYearly(salary);
+        // Loosely collect variables with info on a new employee
+        var name = PromptForString("What is your name? ");
+        var department = PromptForInteger("What is your department number? ");
+        var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+        var monthlySalary = ComputeMonthlySalary(salary);
 
-      Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
+        // Make a new Employee object and fill in their details from the variables above.
+        var newEmployee = new Employee();
+        newEmployee.MonthlySalary = monthlySalary;
+        newEmployee.Name = name;
+        newEmployee.Department = department;
+        newEmployee.Salary = salary;
+
+        // Slap that employee on the end of our list
+        employeeList.Add(newEmployee);
+
+        var answer = PromptForString("Keep going? ");
+        if (answer.ToLower() == "no")
+        // if (string.Equals(answer, "no", StringComparison.OrdinalIgnoreCase))
+        {
+          keepGoing = false;
+        }
+      }
     }
   }
 }
