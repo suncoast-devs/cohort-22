@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // | Face  | Value |
 // | ----- | ----- |
@@ -35,10 +36,13 @@
 //   - Behavior: Make a new deck of 52 shuffled cards. Deal one card out of the deck.
 
 // - Card
+class Card
+{
 
-//   - Properties: The Face of the card, the Suit of the card
-//   - Behaviors:
-//     - The Value of the card according to the table in the "P"roblem part
+  //   - Properties: The Face of the card, the Suit of the card
+  //   - Behaviors:
+  //     - The Value of the card according to the table in the "P"roblem part
+}
 
 // - Hand
 
@@ -61,12 +65,13 @@ namespace Blackjack
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Welcome to C#");
       // 1.  Create a new deck
       //     PEDAC ^^^^ - Properties: A list of 52 cards
       //     Algorithm for making a list of 52 cards
 
-      //         Make a blank list of cards
+      //         Make a blank list of cards -- call this `deck`
+      var deck = new List<Card>();
+
       //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
       //         Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
       //         ```
