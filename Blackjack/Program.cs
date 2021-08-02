@@ -1,21 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// | Face  | Value |
-// | ----- | ----- |
-// | 2     | 2     |
-// | 3     | 3     |
-// | 4     | 4     |
-// | 5     | 5     |
-// | 6     | 6     |
-// | 7     | 7     |
-// | 8     | 8     |
-// | 9     | 9     |
-// | 10    | 10    |
-// | Jack  | 10    |
-// | Queen | 10    |
-// | King  | 10    |
-// | Ace   | 11    |
+
 
 
 // # Data Structure
@@ -41,6 +27,92 @@ class Card
   //   - Properties: The Face of the card, the Suit of the card
   public string Face { get; set; }
   public string Suit { get; set; }
+
+  public int Value()
+  {
+    // | Face  | Value |
+    // | ----- | ----- |
+    // | 2     | 2     |
+    if (Face == "2")
+    {
+      return 2;
+    }
+
+    // | 3     | 3     |
+    if (Face == "3")
+    {
+      return 3;
+    }
+
+    // | 4     | 4     |
+    if (Face == "4")
+    {
+      return 4;
+    }
+
+    // | 5     | 5     |
+    if (Face == "5")
+    {
+      return 5;
+    }
+
+    // | 6     | 6     |
+    if (Face == "6")
+    {
+      return 6;
+    }
+
+    // | 7     | 7     |
+    if (Face == "7")
+    {
+      return 7;
+    }
+
+    // | 8     | 8     |
+    if (Face == "8")
+    {
+      return 8;
+    }
+
+    // | 9     | 9     |
+    if (Face == "9")
+    {
+      return 9;
+    }
+
+    // | 10    | 10    |
+    if (Face == "10")
+    {
+      return 10;
+    }
+
+    // | Jack  | 10    |
+    if (Face == "Jack")
+    {
+      return 10;
+    }
+
+    // | Queen | 10    |
+    if (Face == "Queen")
+    {
+      return 10;
+    }
+
+    // | King  | 10    |
+    if (Face == "King")
+    {
+      return 10;
+    }
+
+    // | Ace   | 11    |
+    if (Face == "Ace")
+    {
+      return 11;
+    }
+
+    // What about here????
+    return 0;
+  }
 
   override public string ToString()
   {
