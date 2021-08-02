@@ -30,88 +30,42 @@ class Card
 
   public int Value()
   {
-    // | Face  | Value |
-    // | ----- | ----- |
-    // | 2     | 2     |
-    if (Face == "2")
-    {
-      return 2;
-    }
+    // var values = new Dictionary<string, int>();
+    // for (var number = 2; number <= 10; number++)
+    // {
+    //   values.Add($"{number}", number);
+    // }
+    // values.Add("Jack", 10);
+    // values.Add("Queen", 10);
+    // values.Add("King", 10);
+    // values.Add("Ace", 11);
 
-    // | 3     | 3     |
-    if (Face == "3")
-    {
-      return 3;
-    }
+    // return values[Face];
 
-    // | 4     | 4     |
-    if (Face == "4")
+    switch (Face)
     {
-      return 4;
-    }
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+      case "9":
+      case "10":
+        return int.Parse(Face);
 
-    // | 5     | 5     |
-    if (Face == "5")
-    {
-      return 5;
-    }
+      case "Jack":
+      case "Queen":
+      case "King":
+        return 10;
 
-    // | 6     | 6     |
-    if (Face == "6")
-    {
-      return 6;
-    }
+      case "Ace":
+        return 11;
 
-    // | 7     | 7     |
-    if (Face == "7")
-    {
-      return 7;
+      default:
+        return 0;
     }
-
-    // | 8     | 8     |
-    if (Face == "8")
-    {
-      return 8;
-    }
-
-    // | 9     | 9     |
-    if (Face == "9")
-    {
-      return 9;
-    }
-
-    // | 10    | 10    |
-    if (Face == "10")
-    {
-      return 10;
-    }
-
-    // | Jack  | 10    |
-    if (Face == "Jack")
-    {
-      return 10;
-    }
-
-    // | Queen | 10    |
-    if (Face == "Queen")
-    {
-      return 10;
-    }
-
-    // | King  | 10    |
-    if (Face == "King")
-    {
-      return 10;
-    }
-
-    // | Ace   | 11    |
-    if (Face == "Ace")
-    {
-      return 11;
-    }
-
-    // What about here????
-    return 0;
   }
 
   override public string ToString()
