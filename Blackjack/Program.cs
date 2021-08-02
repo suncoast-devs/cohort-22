@@ -38,8 +38,15 @@ using System.Collections.Generic;
 // - Card
 class Card
 {
-
   //   - Properties: The Face of the card, the Suit of the card
+  public string Face { get; set; }
+  public string Suit { get; set; }
+
+  override public string ToString()
+  {
+    return $"The {Face} of {Suit}";
+  }
+
   //   - Behaviors:
   //     - The Value of the card according to the table in the "P"roblem part
 }
@@ -73,22 +80,29 @@ namespace Blackjack
       var deck = new List<Card>();
 
       //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
+      var suits = new List<string>() { "Club", "Diamond", "Heart", "Spade" };
+
       //         Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
+      var faces = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+
       //         ```
       //         Go through all of the suits one at a time and in order
-      //         {
-      //             Get the current suit
-      //             Go through all of the faces one a time and in order
-      //             {
-      //                 Get the current face
+      foreach (var suit in suits)
+      {
+        //             Go through all of the faces one a time and in order
+        foreach (var face in faces)
+        {
+          //     With the current suit and the current face, make a new card
+          var newCard = new Card()
+          {
+            Suit = suit,
+            Face = face,
+          };
 
-      //                 With the current suit and the current face, make a new card
-      //                 Add that card to the list of cards
-      //             Go to the card and loop again
-      //             }
-      //         Go to the next suit and loop again
-      //         }
-      //         ```
+          //     Add that card to the list of cards
+          deck.Add(newCard);
+        }
+      }
 
       // 2.  Ask the deck to make a new shuffled 52 cards
       // 3.  Create a player hand
