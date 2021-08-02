@@ -149,21 +149,28 @@ namespace Blackjack
 
       // 5.  Ask the deck for a card and place it in the player hand
       //   - the card is equal to the 0th index of the deck list
-      var firstPlayerCard = deck[0];
-      //   - Remove that card from the deck list
-      deck.Remove(firstPlayerCard);
-      //   - call the "add card" behavior of the hand and pass it this card
-      player.AddCard(firstPlayerCard);
-
       // 6.  Ask the deck for a card and place it in the player hand
-      var secondPlayerCard = deck[0];
-      deck.Remove(secondPlayerCard);
-      player.AddCard(secondPlayerCard);
-
-      Console.WriteLine(player.CurrentCards.Count);
+      for (var numberOfCardsToDeal = 0; numberOfCardsToDeal < 2; numberOfCardsToDeal++)
+      {
+        var card = deck[0];
+        //   - Remove that card from the deck list
+        deck.Remove(card);
+        //   - call the "add card" behavior of the hand and pass it this card
+        player.AddCard(card);
+      }
 
       // 7.  Ask the deck for a card and place it in the dealer hand
       // 8.  Ask the deck for a card and place it in the dealer hand
+      for (var numberOfCardsToDeal = 0; numberOfCardsToDeal < 2; numberOfCardsToDeal++)
+      {
+        var card = deck[0];
+        //   - Remove that card from the deck list
+        deck.Remove(card);
+        //   - call the "add card" behavior of the hand and pass it this card
+        dealer.AddCard(card);
+      }
+
+      Console.WriteLine();
       // 9.  Show the player the cards in their hand and the TotalValue of their Hand
       // 10. If they have BUSTED (hand TotalValue is > 21), then goto step 15
       // 11. Ask the player if they want to HIT or STAND
