@@ -5,3 +5,4 @@
 - YES How to restart the game at _any_ point
 - YES How to deal out cards from the deck properly
 - How to avoid duplicating code
+- How to make Ace worth 1 and 11
