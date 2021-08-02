@@ -173,6 +173,13 @@ class Deck
 {
   public List<Card> Cards { get; set; } = new List<Card>();
 
+  public Deck()
+  {
+    // Every time we `new Deck()` please initialize and shuffle
+    Initialize();
+    Shuffle();
+  }
+
   // Behaviors:
   //   Initialize a list of 52 cards
   public void Initialize()
@@ -270,8 +277,6 @@ namespace Blackjack
       //         Make a blank list of cards -- call this `deck`
 
       var deck = new Deck();
-      deck.Initialize();
-      deck.Shuffle();
 
       // 3.  Create a player hand
       var player = new Hand();
