@@ -52,16 +52,31 @@ class Card
 }
 
 // - Hand
+class Hand
+{
+  //   - Properties: A list of individual Cards
+  public List<Card> CurrentCards { get; set; } = new List<Card>();
 
-//   - Properties: A list of individual Cards
-//   - Behaviors:
-//     - TotalValue representing he sum of the individual Cards in the list.
-//       - Start with a total = 0
-//       - For each card in the hand do this:
-//         - Add the amount of that card's value to total
-//       - return "total" as the result
-//     - Add a card to the hand
-//       - Adds the supplied card to the list of cards
+  // This uses the constructor to initialize the list of cards
+  // public Hand()
+  // {
+  //   CurrentCards = new List<Card>();
+  // }
+
+  //   - Behaviors:
+  //     - TotalValue representing he sum of the individual Cards in the list.
+  //       - Start with a total = 0
+  //       - For each card in the hand do this:
+  //         - Add the amount of that card's value to total
+  //       - return "total" as the result
+
+  // - Add a card to the hand
+  public void AddCard(Card cardToAdd)
+  {
+    //       - Adds the supplied card to the list of cards
+    CurrentCards.Add(cardToAdd);
+  }
+}
 
 // - Player is just an instance of the Hand class
 // - Dealer is just an instance of the Hand class
@@ -127,9 +142,26 @@ namespace Blackjack
       }
 
       // 3.  Create a player hand
+      var player = new Hand();
+
       // 4.  Create a dealer hand
+      var dealer = new Hand();
+
       // 5.  Ask the deck for a card and place it in the player hand
+      //   - the card is equal to the 0th index of the deck list
+      var firstPlayerCard = deck[0];
+      //   - Remove that card from the deck list
+      deck.Remove(firstPlayerCard);
+      //   - call the "add card" behavior of the hand and pass it this card
+      player.AddCard(firstPlayerCard);
+
       // 6.  Ask the deck for a card and place it in the player hand
+      var secondPlayerCard = deck[0];
+      deck.Remove(secondPlayerCard);
+      player.AddCard(secondPlayerCard);
+
+      Console.WriteLine(player.CurrentCards.Count);
+
       // 7.  Ask the deck for a card and place it in the dealer hand
       // 8.  Ask the deck for a card and place it in the dealer hand
       // 9.  Show the player the cards in their hand and the TotalValue of their Hand
