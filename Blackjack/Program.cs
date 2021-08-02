@@ -112,6 +112,19 @@ class Hand
     //       - Adds the supplied card to the list of cards
     CurrentCards.Add(cardToAdd);
   }
+
+  public void PrintCardsAndTotal(string handName)
+  {
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine($"{handName}, your cards are:");
+    Console.WriteLine(String.Join(", ", CurrentCards));
+
+    //     and the TotalValue of their Hand
+    Console.WriteLine($"The total value of your hand is: {TotalValue()}");
+    Console.WriteLine();
+    Console.WriteLine();
+  }
 }
 
 // - Player is just an instance of the Hand class
@@ -215,15 +228,8 @@ namespace Blackjack
         // 9.  Show the player the cards in their hand
         //     Loop through the list of cards in the player's hand
         //       for every card, print out to the user the description of the card
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine("Player, your cards are:");
-        Console.WriteLine(String.Join(", ", player.CurrentCards));
 
-        //     and the TotalValue of their Hand
-        Console.WriteLine($"The total value of your hand is: {player.TotalValue()}");
-        Console.WriteLine();
-        Console.WriteLine();
+        player.PrintCardsAndTotal("Player");
 
         // 11. Ask the player if they want to HIT or STAND
         Console.Write("Do you want to HIT or STAND? ");
@@ -240,14 +246,51 @@ namespace Blackjack
         }
         // 13. If STAND then continue on
       }
+
+      player.PrintCardsAndTotal("Player");
+
       // 14. If the dealer's hand TotalValue is more than 21 then goto step 17
       // 15. If the dealer's hand TotalValue is less than 17
-      //     - Add a card to the dealer hand and go back to 14
+      while (player.TotalValue() <= 21 && dealer.TotalValue() <= 17)
+      {
+        //     - Add a card to the dealer hand
+        var newCard = deck[0];
+        deck.Remove(newCard);
+
+        dealer.AddCard(newCard);
+        // and go back to 14
+      }
+
       // 16. Show the dealer's hand TotalValue
+      dealer.PrintCardsAndTotal("Dealer");
+
       // 17. If the player's hand TotalValue > 21 show "DEALER WINS"
+      if (player.TotalValue() > 21)
+      {
+        Console.WriteLine("DEALER WINS");
+      }
+      else
       // 18. If the dealer's hand TotalValue > 21 show "PLAYER WINS"
+      if (dealer.TotalValue() > 21)
+      {
+        Console.WriteLine("PLAYER WINS");
+      }
+      else
       // 19. If the dealer's hand TotalValue is more than the player's hand TotalValue then show "DEALER WINS", else show "PLAYER WINS"
-      // 20. If the value of the hands are even, show "DEALER WINS"
+      if (dealer.TotalValue() > player.TotalValue())
+      {
+        Console.WriteLine("DEALER WINS");
+      }
+      else
+      if (player.TotalValue() > dealer.TotalValue())
+      {
+        Console.WriteLine("PLAYER WINS");
+      }
+      else
+      {
+        // 20. If the value of the hands are even, show "DEALER WINS"
+        Console.WriteLine("DEALER WINS");
+      }
     }
   }
 }
