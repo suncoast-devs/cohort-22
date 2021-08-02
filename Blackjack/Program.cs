@@ -127,6 +127,77 @@ class Hand
   }
 }
 
+class Deck
+{
+  public List<Card> Cards { get; set; } = new List<Card>();
+
+  // Behaviors:
+  //   Initialize a list of 52 cards
+  public void Initialize()
+  {
+    //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
+    var suits = new List<string>() { "Club", "Diamond", "Heart", "Spade" };
+
+    //         Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
+    var faces = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+
+    //         ```
+    //         Go through all of the suits one at a time and in order
+    foreach (var suit in suits)
+    {
+      //             Go through all of the faces one a time and in order
+      foreach (var face in faces)
+      {
+        //     With the current suit and the current face, make a new card
+        var newCard = new Card()
+        {
+          Suit = suit,
+          Face = face,
+        };
+
+        //     Add that card to the list of cards
+        Cards.Add(newCard);
+      }
+    }
+  }
+
+  //   Shuffle
+  public void Shuffle()
+  {
+    // 2.  Ask the deck to make a new shuffled 52 cards
+    // numberOfCards = length of our deck
+    var numberOfCards = Cards.Count;
+
+    // for rightIndex from numberOfCards - 1 down to 1 do:
+    for (var rightIndex = numberOfCards - 1; rightIndex > 1; rightIndex--)
+    {
+      //   leftIndex = random integer that is greater than or equal to 0 and LESS than rightIndex. See the section "How do we get a random integer")
+      var randomNumberGenerator = new Random();
+      var leftIndex = randomNumberGenerator.Next(rightIndex);
+
+      //   Now swap the values at rightIndex and leftIndex by doing this:
+      //     leftCard = the value from Cards[leftIndex]
+      var leftCard = Cards[leftIndex];
+      //     rightCard = the value from Cards[rightIndex]
+      var rightCard = Cards[rightIndex];
+      //     Cards[rightIndex] = leftCard
+      Cards[rightIndex] = leftCard;
+      //     Cards[leftIndex] = rightCard
+      Cards[leftIndex] = rightCard;
+    }
+  }
+
+  //   Deal a single card
+  public Card Deal()
+  {
+    var card = Cards[0];
+
+    Cards.Remove(card);
+
+    return card;
+  }
+}
+
 // - Player is just an instance of the Hand class
 // - Dealer is just an instance of the Hand class
 
@@ -141,6 +212,11 @@ namespace Blackjack
       //     Algorithm for making a list of 52 cards
 
       //         Make a blank list of cards -- call this `deck`
+
+      var temporaryDeck = new Deck();
+      temporaryDeck.Initialize();
+      temporaryDeck.Shuffle();
+
       var deck = new List<Card>();
 
       //         Suits is a list of "Club", "Diamond", "Heart", or "Spade"
