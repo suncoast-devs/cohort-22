@@ -65,10 +65,20 @@ class Hand
 
   //   - Behaviors:
   //     - TotalValue representing he sum of the individual Cards in the list.
-  //       - Start with a total = 0
-  //       - For each card in the hand do this:
-  //         - Add the amount of that card's value to total
-  //       - return "total" as the result
+  public int TotalValue()
+  {
+    //       - Start with a total = 0
+    var total = 0;
+    //       - For each card in the hand do this:
+    foreach (var card in CurrentCards)
+    {
+      //         - Add the amount of that card's value to total
+      total = total + card.Value();
+    }
+
+    //       - return "total" as the result
+    return total;
+  }
 
   // - Add a card to the hand
   public void AddCard(Card cardToAdd)
@@ -170,8 +180,15 @@ namespace Blackjack
         dealer.AddCard(card);
       }
 
-      Console.WriteLine();
-      // 9.  Show the player the cards in their hand and the TotalValue of their Hand
+      // 9.  Show the player the cards in their hand
+      //     Loop through the list of cards in the player's hand
+      //       for every card, print out to the user the description of the card
+      Console.WriteLine("Player, your cards are:");
+      Console.WriteLine(String.Join(", ", player.CurrentCards));
+
+      //     and the TotalValue of their Hand
+      Console.WriteLine($"The total value of your hand is: {player.TotalValue()}");
+
       // 10. If they have BUSTED (hand TotalValue is > 21), then goto step 15
       // 11. Ask the player if they want to HIT or STAND
       // 12. If HIT
