@@ -48,7 +48,7 @@ namespace Linq
       Console.WriteLine();
 
 
-      var movies = new List<Movie>() {
+      var listOfFilms = new List<Movie>() {
         new Movie()
         {
               Id = 1,
@@ -315,9 +315,9 @@ namespace Linq
               Cost = 18402771,
               Budget = 844331
         }
-
       };
 
+      var movieNames = listOfFilms.Select(film => film.Name);
     }
   }
 }
