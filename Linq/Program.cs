@@ -5,17 +5,17 @@ namespace Linq
 {
   class Program
   {
-    static int MultiplyBy2(int value)
-    {
-      return value * 2;
-    }
+    // static int MultiplyBy2(int value)
+    // {
+    //   return value * 2;
+    // }
 
     static void Main(string[] args)
     {
       var scores = new List<int> { 42, 100, 98, 15 };
 
       // Here is our handy multiply by two
-      // Func<int, int> MultiplyBy2 = value => value * 2;
+      Func<int, int> MultiplyBy2 = value => value * 2;
 
       // Make a new list to store the results
       var newScores = new List<int>();
