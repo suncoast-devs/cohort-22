@@ -16,6 +16,9 @@ namespace Linq
       var scores = new List<int> { 42, 100, 98, 15 };
 
       var newScores = scores.Select(score => score * 2);
+
+      var slightlyBetterDoubledScores = newScores.Select(score => score + 1);
+
       foreach (var score in newScores)
       {
         Console.WriteLine(score);
