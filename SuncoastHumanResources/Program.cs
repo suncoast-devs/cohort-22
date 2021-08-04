@@ -66,13 +66,51 @@ namespace SuncoastHumanResources
       {
         // Insert a blank line then prompt them and get their answer (force uppercase)
         Console.WriteLine();
-        Console.Write("What do you want to do?\n(A)dd an employee\n(F)ind an employee\n(S)how all the employees\n(Q)uit\n: ");
+        Console.Write("What do you want to do?\n(A)dd an employee\n(D)elete an employee\n(F)ind an employee\n(S)how all the employees\n(Q)uit\n: ");
         var choice = Console.ReadLine().ToUpper();
 
         if (choice == "Q")
         {
           // They said quit, so set our keepGoing to false
           keepGoing = false;
+        }
+        else
+        if (choice == "D")
+        {
+          // Get the employee name we are searchign for
+          var nameToSearchFor = PromptForString("What name are you looking for? ");
+
+          // Search the database to see if they exist!
+          Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == nameToSearchFor);
+
+          // If we found an employee
+          if (foundEmployee != null)
+          {
+            //  - We did find the employee
+            //  - Show the details
+            Console.WriteLine($"{foundEmployee.Name} is in department {foundEmployee.Department} and makes ${foundEmployee.Salary}");
+
+            //  - Ask to confirm "Are you sure you want to delete them?"
+            var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
+
+            //  - If they say no
+            if (confirm == "N")
+            {
+              //    - do nothing
+            }
+            else
+            {
+              //  - If they say yes
+              //    - Delete them
+              employees.Remove(foundEmployee);
+            }
+          }
+          else
+          {
+            //  Show that the person doesn't exist
+            Console.WriteLine("No such employee!");
+          }
+
         }
         else
         if (choice == "F")
