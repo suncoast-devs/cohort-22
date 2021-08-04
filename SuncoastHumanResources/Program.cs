@@ -77,14 +77,22 @@ namespace SuncoastHumanResources
         else
         if (choice == "D")
         {
+          // DELETE - out of (CREATE, READ, UPDATE, DELETE)
+
           // Get the employee name we are searchign for
           var nameToSearchFor = PromptForString("What name are you looking for? ");
 
           // Search the database to see if they exist!
           Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == nameToSearchFor);
 
+          // If we didn't find anyone
+          if (foundEmployee == null)
+          {
+            //  Show that the person doesn't exist
+            Console.WriteLine("No such employee!");
+          }
           // If we found an employee
-          if (foundEmployee != null)
+          else
           {
             //  - We did find the employee
             //  - Show the details
@@ -93,24 +101,12 @@ namespace SuncoastHumanResources
             //  - Ask to confirm "Are you sure you want to delete them?"
             var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
 
-            //  - If they say no
-            if (confirm == "N")
+            if (confirm == "Y")
             {
-              //    - do nothing
-            }
-            else
-            {
-              //  - If they say yes
               //    - Delete them
               employees.Remove(foundEmployee);
             }
           }
-          else
-          {
-            //  Show that the person doesn't exist
-            Console.WriteLine("No such employee!");
-          }
-
         }
         else
         if (choice == "F")
@@ -142,6 +138,7 @@ namespace SuncoastHumanResources
           }
         }
         else
+        if (choice == "A")
         {
           // CREATE (out of CREATE - READ - UPDATE - DELETE)
 
@@ -156,7 +153,10 @@ namespace SuncoastHumanResources
           // Add it to the list
           employees.Add(employee);
         }
-
+        else
+        {
+          Console.WriteLine("NOPE! ☠️");
+        }
         // end of the `while` statement
       }
     }
