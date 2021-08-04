@@ -40,10 +40,10 @@ namespace SuncoastHumanResources
 
     static void Main(string[] args)
     {
+      // Make a new database
       var database = new EmployeeDatabase();
 
       DisplayGreeting();
-
 
       // Should we keep showing the menu?
       var keepGoing = true;
@@ -56,41 +56,30 @@ namespace SuncoastHumanResources
         Console.Write("What do you want to do?\n(A)dd an employee\n(D)elete an employee\n(F)ind an employee\n(S)how all the employees\n(U)pdate an employee\n(Q)uit\n: ");
         var choice = Console.ReadLine().ToUpper();
 
-        if (choice == "Q")
+        switch (choice)
         {
-          // They said quit, so set our keepGoing to false
-          keepGoing = false;
+          case "Q":
+            keepGoing = false;
+            break;
+          case "D":
+            DeleteEmployee(database);
+            break;
+          case "F":
+            ShowEmployee(database);
+            break;
+          case "S":
+            ShowAllEmployees(database);
+            break;
+          case "U":
+            UpdateEmployee(database);
+            break;
+          case "A":
+            AddEmployee(database);
+            break;
+          default:
+            Console.WriteLine("NOPE! ☠️");
+            break;
         }
-        else
-        if (choice == "D")
-        {
-          DeleteEmployee(database);
-        }
-        else
-        if (choice == "F")
-        {
-          ShowEmployee(database);
-        }
-        else
-        if (choice == "S")
-        {
-          ShowAllEmployees(database);
-        }
-        else
-        if (choice == "U")
-        {
-          UpdateEmployee(database);
-        }
-        else
-        if (choice == "A")
-        {
-          AddEmployee(database);
-        }
-        else
-        {
-          Console.WriteLine("NOPE! ☠️");
-        }
-        // end of the `while` statement
       }
     }
 
