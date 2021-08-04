@@ -66,7 +66,7 @@ namespace SuncoastHumanResources
       {
         // Insert a blank line then prompt them and get their answer (force uppercase)
         Console.WriteLine();
-        Console.Write("What do you want to do?\n(A)dd an employee\n(D)elete an employee\n(F)ind an employee\n(S)how all the employees\n(Q)uit\n: ");
+        Console.Write("What do you want to do?\n(A)dd an employee\n(D)elete an employee\n(F)ind an employee\n(S)how all the employees\n(U)pdate an employee\n(Q)uit\n: ");
         var choice = Console.ReadLine().ToUpper();
 
         if (choice == "Q")
@@ -135,6 +135,50 @@ namespace SuncoastHumanResources
           foreach (var employee in employees)
           {
             Console.WriteLine($"{employee.Name} is in department {employee.Department} and makes ${employee.Salary}");
+          }
+        }
+        else
+        if (choice == "U")
+        {
+          // UPDATE - from CREATE, READ, UPDATE, DELETE
+
+          // Get the employee name we are searchign for
+          var nameToSearchFor = PromptForString("What name are you looking for? ");
+
+          // Search the database to see if they exist!
+          Employee foundEmployee = employees.FirstOrDefault(employee => employee.Name == nameToSearchFor);
+
+          // If we didn't find anyone
+          if (foundEmployee == null)
+          {
+            //  Show that the person doesn't exist
+            Console.WriteLine("No such employee!");
+          }
+          // If we found an employee
+          else
+          {
+            Console.WriteLine($"{foundEmployee.Name} is in department {foundEmployee.Department} and makes ${foundEmployee.Salary}");
+            var changeChoice = PromptForString("What do you want to change [Name/Department/Salary]? ").ToUpper();
+
+            // -- What do we want to change?
+            //    - if name
+            if (changeChoice == "NAME")
+            {
+              //      - prompt for a new name
+              foundEmployee.Name = PromptForString("What is the new name? ");
+            }
+            //    - if the department
+            if (changeChoice == "DEPARTMENT")
+            {
+              //      - prompt for a new department
+              foundEmployee.Department = PromptForInteger("What is the new department? ");
+            }
+            //   - if salary
+            if (changeChoice == "SALARY")
+            {
+              //      - prompt for new salary
+              foundEmployee.Salary = PromptForInteger("What is the new salary? ");
+            }
           }
         }
         else
