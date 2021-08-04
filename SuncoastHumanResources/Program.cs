@@ -65,7 +65,7 @@ namespace SuncoastHumanResources
       {
         // Insert a blank line then prompt them and get their answer (force uppercase)
         Console.WriteLine();
-        Console.Write("What do you want to do? (A)dd an employee or (Q)uit: ");
+        Console.Write("What do you want to do?\n(A)dd an employee\n(S)how all the employees\n(Q)uit\n: ");
         var choice = Console.ReadLine().ToUpper();
 
         if (choice == "Q")
@@ -74,7 +74,18 @@ namespace SuncoastHumanResources
           keepGoing = false;
         }
         else
+        if (choice == "S")
         {
+          // READ (out of CREATE - READ - UPDATE - DELETE)
+          foreach (var employee in employees)
+          {
+            Console.WriteLine($"{employee.Name} is in department {employee.Department} and makes ${employee.Salary}");
+          }
+        }
+        else
+        {
+          // CREATE (out of CREATE - READ - UPDATE - DELETE)
+
           // Make a new employee object
           var employee = new Employee();
 
