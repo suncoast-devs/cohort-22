@@ -54,15 +54,41 @@ namespace SuncoastHumanResources
     {
       var employees = new List<Employee>();
 
-      var employee = new Employee();
-
       DisplayGreeting();
 
-      employee.Name = PromptForString("What is your name? ");
-      employee.Department = PromptForInteger("What is your department number? ");
-      employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-      Console.WriteLine($"Hello, {employee.Name} you make {employee.MonthlySalary()} dollars per month.");
+      // Should we keep showing the menu?
+      var keepGoing = true;
+
+      // While the user hasn't said QUIT yet
+      while (keepGoing)
+      {
+        // Insert a blank line then prompt them and get their answer (force uppercase)
+        Console.WriteLine();
+        Console.Write("What do you want to do? (A)dd an employee or (Q)uit: ");
+        var choice = Console.ReadLine().ToUpper();
+
+        if (choice == "Q")
+        {
+          // They said quit, so set our keepGoing to false
+          keepGoing = false;
+        }
+        else
+        {
+          // Make a new employee object
+          var employee = new Employee();
+
+          // Prompt for values and save them in the employee's properties
+          employee.Name = PromptForString("What is your name? ");
+          employee.Department = PromptForInteger("What is your department number? ");
+          employee.Salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+
+          // Add it to the list
+          employees.Add(employee);
+        }
+
+        // end of the `while` statement
+      }
     }
   }
 }
