@@ -15,6 +15,11 @@ namespace Linq
     public double TotalRevenue { get; set; }
     public double Cost { get; set; }
     public double Budget { get; set; }
+
+    public double RevenuePerScreening()
+    {
+      return TotalRevenue / Screenings;
+    }
   }
 
 
@@ -318,6 +323,39 @@ namespace Linq
       };
 
       var movieNames = listOfFilms.Select(film => film.Name);
+      var averages = listOfFilms.Select(film => film.RevenuePerScreening());
+
+      var movieNamesWithIndex = listOfFilms.Select((film, index) => $"The movie named {film.Name} is at position {index}");
+
+      // Get just a list of the popular films
+      var popularFilms = listOfFilms.Where(film => film.Screenings >= 100);
+
+      // .... now translate the list of movies to the list of movie names
+      var popularFilmNames = popularFilms.Select(film => film.Name);
+
+      var popularFilmNamesInOneStep = listOfFilms.Where(film => film.Screenings >= 100).Select(film => film.Name);
+
+      Console.WriteLine(String.Join(", ", popularFilmNames));
+
+      var allRevenues = listOfFilms.Select(film => film.TotalRevenue);
+      var totalRevenue = allRevenues.Sum();
+      Console.WriteLine(totalRevenue);
+
+      var totalRevenueOneStep = listOfFilms.Sum(film => film.TotalRevenue);
+      var totalScreenings = listOfFilms.Sum(film => film.Screenings);
+
+      var favoriteMovie = listOfFilms.FirstOrDefault(film => film.Name == "Back To The Future");
+
+      if (favoriteMovie == null)
+      {
+        // Variable is null and not ok to use
+        Console.WriteLine("Nope, no such movie!");
+      }
+      else
+      {
+        // Variable is not null and is totally a fine `Movie` object to use
+        Console.WriteLine($"The budget for {favoriteMovie.Name} was {favoriteMovie.Budget}");
+      }
     }
   }
 }
