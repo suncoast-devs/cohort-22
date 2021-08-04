@@ -65,13 +65,44 @@ namespace SuncoastHumanResources
       {
         // Insert a blank line then prompt them and get their answer (force uppercase)
         Console.WriteLine();
-        Console.Write("What do you want to do?\n(A)dd an employee\n(S)how all the employees\n(Q)uit\n: ");
+        Console.Write("What do you want to do?\n(A)dd an employee\n(F)ind an employee\n(S)how all the employees\n(Q)uit\n: ");
         var choice = Console.ReadLine().ToUpper();
 
         if (choice == "Q")
         {
           // They said quit, so set our keepGoing to false
           keepGoing = false;
+        }
+        else
+        if (choice == "F")
+        {
+          // - Create a variable named **`foundEmployee`**
+          Employee foundEmployee = null;
+
+          // - Prompt for the name
+          var nameToSearchFor = PromptForString("What name are you looking for? ");
+
+          // - Loop through the list to look for a match
+          foreach (var employee in employees)
+          {
+            //   - If we find one, update `foundEmployee`
+            if (employee.Name == nameToSearchFor)
+            {
+              foundEmployee = employee;
+            }
+          }
+
+          // - After the loop, `foundEmployee` is either `null` (not found) or refers to the matching item
+          if (foundEmployee == null)
+          {
+            // - Show a message if `null`
+            Console.WriteLine("No such person!");
+          }
+          else
+          {
+            // - otherwise show the details.
+            Console.WriteLine($"{foundEmployee.Name} is in department {foundEmployee.Department} and makes ${foundEmployee.Salary}");
+          }
         }
         else
         if (choice == "S")
