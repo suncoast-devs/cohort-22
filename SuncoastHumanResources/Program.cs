@@ -42,6 +42,7 @@ namespace SuncoastHumanResources
     {
       // Make a new database
       var database = new EmployeeDatabase();
+      database.LoadEmployees();
 
       DisplayGreeting();
 
@@ -81,6 +82,8 @@ namespace SuncoastHumanResources
             break;
         }
       }
+
+      database.SaveEmployees();
     }
 
     private static void DeleteEmployee(EmployeeDatabase database)
