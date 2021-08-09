@@ -63,45 +63,28 @@ namespace FirstBankOfSuncoast
     {
       var keepGoing = true;
 
-      // Empty list of transactions
-      var transactions = new List<Transaction>();
-
-      // You will compute balances by examining all the transactions in the history.
-      // For instance,
-
-      // if a user deposits 10 to their savings,
-      // var tenDollarSavingsDeposit = new Transaction();
-      // tenDollarSavingsDeposit.Amount = 10;
-      // tenDollarSavingsDeposit.Account = "Savings";
-      // tenDollarSavingsDeposit.Type = "Deposit";
-      var tenDollarSavingsDeposit = new Transaction()
+      // list of SAMPLE transactions
+      var transactions = new List<Transaction>()
       {
-        Amount = 10,
-        Account = "Savings",
-        Type = "Deposit"
+        new Transaction()
+        {
+          Amount = 10,
+          Account = "Savings",
+          Type = "Deposit"
+        },
+        new Transaction()
+        {
+          Amount = 8,
+          Account = "Savings",
+          Type = "Withdraw"
+        },
+        new Transaction()
+        {
+          Amount = 25,
+          Account = "Checking",
+          Type = "Deposit"
+        }
       };
-      transactions.Add(tenDollarSavingsDeposit);
-
-      // then withdraws 8 from their savings,
-      var eightDollarSavingsWithdraw = new Transaction()
-      {
-        Amount = 8,
-        Account = "Savings",
-        Type = "Withdraw"
-      };
-      transactions.Add(eightDollarSavingsWithdraw);
-
-      // then deposits 25 to their checking,
-      var twentyFiveDollarCheckingDeposit = new Transaction()
-      {
-        Amount = 25,
-        Account = "Checking",
-        Type = "Deposit"
-      };
-      transactions.Add(twentyFiveDollarCheckingDeposit);
-
-      // they have three transactions to consider.
-      // Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
 
       while (keepGoing)
       {
@@ -122,6 +105,19 @@ namespace FirstBankOfSuncoast
         else
         if (menuOption == "S")
         {
+          // A:
+          // Print the number of transactions?
+          Console.WriteLine($"There are {transactions.Count} transactions");
+
+          // For each transaction in our list of transactions
+          foreach (var transaction in transactions)
+          {
+            // - Make a description of that transaction
+            var descriptionOfTransaction = transaction.Description();
+
+            // - print that description to the user
+            Console.WriteLine(descriptionOfTransaction);
+          }
         }
         else
         if (menuOption == "B")
