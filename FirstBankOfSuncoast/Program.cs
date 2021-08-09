@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstBankOfSuncoast
 {
@@ -97,6 +98,10 @@ namespace FirstBankOfSuncoast
 
         if (menuOption == "W")
         {
+          int totalChecking = ComputeCheckingBalance(transactions);
+
+          int totalSavings = ComputeSavingsBalance(transactions);
+
         }
         else
         if (menuOption == "D")
@@ -122,6 +127,31 @@ namespace FirstBankOfSuncoast
         else
         if (menuOption == "B")
         {
+          // ALGORITHM
+          //
+          // Need to show the result of the checking account deposits and withdraws
+          // Need to show the result of the savings account deposits and withdraws
+          //
+          // We know that transaction amounts are always POSITIVE
+          //
+          // Total up the checking account deposits and call that TotalCheckingDeposits
+          // - Make a total equal to 0
+          // var total = 0;
+          // // - for each transaction
+          // foreach (var transaction in transactions)
+          // {
+          //   // -   if the transaction is a checking transaction AND it is a deposit
+          //   if (transaction.Account == "Checking" && transaction.Type == "Deposit")
+          //   {
+          //     //       add the transaction amount to the total
+          //     total = total + transaction.Amount;
+          //   }
+          // }
+          int totalChecking = ComputeCheckingBalance(transactions);
+
+          int totalSavings = ComputeSavingsBalance(transactions);
+
+          Console.WriteLine($"Your checking account has ${totalChecking} and your savings has ${totalSavings}");
         }
         else
         if (menuOption == "Q")
@@ -132,114 +162,36 @@ namespace FirstBankOfSuncoast
         {
           Console.WriteLine("Unknown menu option");
         }
+
+        // Here is where we will do the CSV for "transactions"
       }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private int ComputeSavingsBalance(List<Transaction> transactions)
+    {
+      var totalSavingsDeposits = transactions.
+                                    Where(transaction => transaction.Account == "Savings" && transaction.Type == "Deposit").
+                                    Sum(transaction => transaction.Amount);
+      var totalSavingsWithdraw = transactions.
+                                    Where(transaction => transaction.Account == "Savings" && transaction.Type == "Withdraw").
+                                    Sum(transaction => transaction.Amount);
+      var totalSavings = totalSavingsDeposits - totalSavingsWithdraw;
+      return totalSavings;
+    }
+
+    private int ComputeCheckingBalance(List<Transaction> transactions)
+    {
+      var totalCheckingDeposits = transactions.
+                                    Where(transaction => transaction.Account == "Checking" && transaction.Type == "Deposit").
+                                    Sum(transaction => transaction.Amount);
+      // Total up the checking account withdraws and call that TotalCheckingWithdraws
+      var totalCheckingWithdraw = transactions.
+                                    Where(transaction => transaction.Account == "Checking" && transaction.Type == "Withdraw").
+                                    Sum(transaction => transaction.Amount);
+      // Subtract TotalCheckingWithdraws from TotalCheckingDeposits  to get TotalChecking
+      var totalChecking = totalCheckingDeposits - totalCheckingWithdraw;
+      return totalChecking;
+    }
 
     static void Main(string[] args)
     {
