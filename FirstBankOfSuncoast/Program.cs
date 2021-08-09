@@ -7,7 +7,7 @@ namespace FirstBankOfSuncoast
     //            1) NAME
     //                            2) INPUT
     //     3) OUTPUT
-    static string PromptForString(string prompt)
+    string PromptForString(string prompt)
     {
       // 4) WORK
       Console.Write(prompt);
@@ -16,7 +16,7 @@ namespace FirstBankOfSuncoast
       return userInput;
     }
 
-    static int PromptForInteger(string prompt)
+    int PromptForInteger(string prompt)
     {
       var isThisGoodInput = false;
       do
@@ -40,21 +40,32 @@ namespace FirstBankOfSuncoast
       return 0;
     }
 
-    static void Main(string[] args)
+
+    // Name      ShowMenu
+    // Input     none (void)
+    // Output    none (void)
+    // Work      A bunch of WriteLines
+    void ShowMenu()
+    {
+      Console.WriteLine();
+      Console.WriteLine("Choose an option from this menu:");
+      Console.WriteLine();
+      Console.WriteLine("[W]ithdraw");
+      Console.WriteLine("[D]eposit");
+      Console.WriteLine("[S]how Transactions");
+      Console.WriteLine("[B]alances");
+      Console.WriteLine("[Q]uit");
+      Console.WriteLine();
+    }
+
+    void RunTheAppPlease()
     {
       var keepGoing = true;
 
       while (keepGoing)
       {
-        Console.WriteLine();
-        Console.WriteLine("Chose an option from this menu:");
-        Console.WriteLine();
-        Console.WriteLine("[W]ithdraw");
-        Console.WriteLine("[D]eposit");
-        Console.WriteLine("[S]how Transactions");
-        Console.WriteLine("[B]alances");
-        Console.WriteLine("[Q]uit");
-        Console.WriteLine();
+        ShowMenu();
+
         // Console.Write("> ");
         // var menuOption = Console.ReadLine().ToUpper();
 
@@ -85,6 +96,118 @@ namespace FirstBankOfSuncoast
           Console.WriteLine("Unknown menu option");
         }
       }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static void Main(string[] args)
+    {
+      var newProgram = new Program();
+      newProgram.RunTheAppPlease();
     }
   }
 }
