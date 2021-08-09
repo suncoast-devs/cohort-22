@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace FirstBankOfSuncoast
 {
@@ -62,8 +63,45 @@ namespace FirstBankOfSuncoast
     {
       var keepGoing = true;
 
-      var sampleTransaction = new Transaction();
-      Console.WriteLine(sampleTransaction.Description());
+      // Empty list of transactions
+      var transactions = new List<Transaction>();
+
+      // You will compute balances by examining all the transactions in the history.
+      // For instance,
+
+      // if a user deposits 10 to their savings,
+      // var tenDollarSavingsDeposit = new Transaction();
+      // tenDollarSavingsDeposit.Amount = 10;
+      // tenDollarSavingsDeposit.Account = "Savings";
+      // tenDollarSavingsDeposit.Type = "Deposit";
+      var tenDollarSavingsDeposit = new Transaction()
+      {
+        Amount = 10,
+        Account = "Savings",
+        Type = "Deposit"
+      };
+      transactions.Add(tenDollarSavingsDeposit);
+
+      // then withdraws 8 from their savings,
+      var eightDollarSavingsWithdraw = new Transaction()
+      {
+        Amount = 8,
+        Account = "Savings",
+        Type = "Withdraw"
+      };
+      transactions.Add(eightDollarSavingsWithdraw);
+
+      // then deposits 25 to their checking,
+      var twentyFiveDollarCheckingDeposit = new Transaction()
+      {
+        Amount = 25,
+        Account = "Checking",
+        Type = "Deposit"
+      };
+      transactions.Add(twentyFiveDollarCheckingDeposit);
+
+      // they have three transactions to consider.
+      // Compute the checking and saving balance, using the transaction list, when needed. In this case, their savings balance is 2 and their checking balance is 25.
 
       while (keepGoing)
       {
