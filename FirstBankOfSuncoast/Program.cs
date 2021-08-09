@@ -62,6 +62,9 @@ namespace FirstBankOfSuncoast
     {
       var keepGoing = true;
 
+      var sampleTransaction = new Transaction();
+      Console.WriteLine(sampleTransaction.Description());
+
       while (keepGoing)
       {
         ShowMenu();
