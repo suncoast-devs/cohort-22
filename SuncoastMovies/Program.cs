@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SuncoastMovies
 {
@@ -20,10 +21,23 @@ namespace SuncoastMovies
       // {
       //   Console.WriteLine(dino.Name);
       // }
-      foreach (var movie in context.Movies)
+
+      // e.g. For every Movie object also get it's associated Rating object!
+      //
+      //                                     JOIN             Rating
+      var moviesWithRatings = context.Movies.Include(movie => movie.Rating);
+
+      foreach (var movie in moviesWithRatings)
       // SELECT * FROM "Movies"
       {
-        Console.WriteLine($"There is a movie named {movie.Title}");
+        if (movie.Rating == null)
+        {
+          Console.WriteLine($"There is a movie named {movie.Title} - with no rating");
+        }
+        else
+        {
+          Console.WriteLine($"There is a movie named {movie.Title} - {movie.Rating.Description}");
+        }
       }
     }
   }

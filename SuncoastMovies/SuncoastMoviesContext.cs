@@ -6,6 +6,7 @@ namespace SuncoastMovies
   public class SuncoastMoviesContext : DbContext
   {
     public DbSet<Movie> Movies { get; set; }
+    public DbSet<Rating> Ratings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
