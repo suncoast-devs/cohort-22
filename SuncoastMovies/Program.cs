@@ -67,6 +67,28 @@ namespace SuncoastMovies
         }
       }
 
+      var newMovie = new Movie
+      {
+        Title = "SpaceBalls",
+        PrimaryDirector = "Mel Brooks",
+        Genre = "Comedy",
+        YearReleased = 1987,
+        RatingId = 2
+      };
+
+
+      var otherNewMovie = new Movie
+      {
+        Title = "Real Genius",
+        PrimaryDirector = "I forget",
+        Genre = "Comedy",
+        YearReleased = 1986,
+        RatingId = 2
+      };
+
+      context.Movies.Add(newMovie);
+      context.Movies.Add(otherNewMovie);
+      context.SaveChanges();
     }
   }
 }
