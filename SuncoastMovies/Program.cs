@@ -39,6 +39,34 @@ namespace SuncoastMovies
           Console.WriteLine($"There is a movie named {movie.Title} - {movie.Rating.Description}");
         }
       }
+
+
+      // Makes a new collection of movies but each movie knows the associated Rating object
+      var moviesWithRatingsRolesAndActors = context.Movies.
+                                              // from our movie, please include the associated Rating object
+                                              Include(movie => movie.Rating).
+                                              // ... and from our movie, please include the associated Roles LIST
+                                              Include(movie => movie.Roles).
+                                              // THEN for each of roles, please include the associated Actor object
+                                              ThenInclude(role => role.Actor);
+
+      foreach (var movie in moviesWithRatingsRolesAndActors)
+      {
+        if (movie.Rating == null)
+        {
+          Console.WriteLine($"{movie.Title} - not rated");
+        }
+        else
+        {
+          Console.WriteLine($"{movie.Title} - {movie.Rating.Description}");
+        }
+
+        foreach (var role in movie.Roles)
+        {
+          Console.WriteLine($" - {role.CharacterName} played by {role.Actor.FullName}");
+        }
+      }
+
     }
   }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace SuncoastMovies
 {
   public class Movie
@@ -18,5 +20,8 @@ namespace SuncoastMovies
     //      |       |
     //      v       v
     public Rating Rating { get; set; }
+
+    // One to Many relationship from Movie => Role
+    public List<Role> Roles { get; set; }
   }
 }
