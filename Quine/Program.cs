@@ -1,12 +1,1 @@
-﻿using System;
-
-namespace Quine
-{
-  class Program
-  {
-    static void Main(string[] args)
-    {
-      Console.WriteLine("Welcome to C#");
-    }
-  }
-}
+﻿class Q{static void Main(){var s="class Q{{static void Main(){{var s={1}{0}{1};System.Console.Write(s,s,'{1}');}}}}";System.Console.Write(s,s,'"');}}
