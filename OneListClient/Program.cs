@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 
 namespace OneListClient
 {
@@ -6,7 +7,7 @@ namespace OneListClient
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Welcome to C#");
+      var client = new HttpClient();
     }
   }
 }
