@@ -15,21 +15,9 @@ namespace BasicAPI.Controllers
     // *me* the programmer. Doesn't tell ASP
     // anything.
     [HttpGet]
-    public string SayHello(string who)
+    public string SayHello(string who = "World")
     {
-      //   string whoOrWorld;
-      //   if (who == null)
-      //   {
-      //     whoOrWorld = "World";
-      //   }
-      //   else
-      //   {
-      //     whoOrWorld = who;
-      //   }
-
-      string whoOrWorld = (who == null) ? "World" : who;
-
-      return $"Hello, {whoOrWorld}. {DateTime.Now}";
+      return $"Hello, {who}. {DateTime.Now}";
     }
   }
 }
