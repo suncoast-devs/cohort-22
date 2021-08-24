@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
 :root {
   font: 16px / 1 sans-serif;
   --sand: #f7f0da;
@@ -16,7 +18,8 @@ body {
   background-color: var(--sand);
 }
 
-h1 {
+h1,
+h2 {
   color: var(--sun);
   background-color: rgb(70, 72, 202);
   border-style: dashed;
@@ -37,9 +40,10 @@ p::first-letter {
   font-size: 32px;
 }
 
-a::after {
+a::after,
+a::before {
   content: '➡️';
-  margin-left: 2px;
+  margin-left: 10px;
   font-size: 8px;
 }
 
@@ -59,8 +63,19 @@ li:nth-child(even) {
   background-color: lightgray;
 }
 
-.done {
+/* Only applies to elements with class "done"
+   but only if they are a DIRECT child of a UL */
+ul > .done {
   text-decoration: line-through;
+}
+
+/* Only applies to elements with class "done"
+   but only if they are ANY child of a UL */
+ul .done {
+}
+
+li + li {
+  color: rebeccapurple;
 }
 
 #polite {
@@ -70,4 +85,59 @@ li:nth-child(even) {
 #rude {
   font-family: monospace;
   text-transform: uppercase;
+}
+
+nav {
+  font-size: 2rem;
+}
+
+.welcome {
+  font-size: 3rem;
+}
+
+.subhead {
+  font-size: 0.5rem;
+}
+
+nav .welcome {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: var(--night-sky);
+}
+
+main {
+  border: 5px solid red;
+  border-radius: 20px;
+  /* 3 rem of padding on all sides */
+  /* padding: 3rem; */
+
+  /* 3 rem on the top and bottom
+     6 rem on the left and right */
+  /* padding: 3rem 6rem; */
+
+  /* 1rem on top
+     2rem on left and right
+     3rem on the bottom
+   */
+  /* padding: 1rem 2rem 3rem; */
+
+  /* top, right, bottom, left */
+  /* padding: 1rem 2rem 3rem 4rem; */
+  margin: 3rem;
+}
+
+aside {
+  border: 5px solid green;
+  border-radius: 20px;
+  margin: 3rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  text-align: center;
 }
