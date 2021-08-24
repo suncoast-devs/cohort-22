@@ -35,3 +35,12 @@ p {
 .done {
   text-decoration: line-through;
 }
+
+#polite {
+  font-family: cursive;
+}
+
+#rude {
+  font-family: monospace;
+  text-transform: uppercase;
+}
