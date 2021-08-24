@@ -28,8 +28,20 @@ p {
   color: red;
 }
 
-.first {
+p:hover {
+  color: green;
+}
+
+/* .first {
   font-weight: bold;
+} */
+
+li:first-child {
+  font-weight: bold;
+}
+
+li:nth-child(even) {
+  background-color: lightgray;
 }
 
 .done {
