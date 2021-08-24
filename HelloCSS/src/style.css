@@ -33,6 +33,16 @@ p {
   color: #85577e;
 }
 
+p::first-letter {
+  font-size: 32px;
+}
+
+a::after {
+  content: '➡️';
+  margin-left: 2px;
+  font-size: 8px;
+}
+
 p:hover {
   color: green;
 }
