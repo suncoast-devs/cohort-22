@@ -14,7 +14,9 @@ body {
 h1 {
   color: blue;
   background-color: yellow;
-  border: 1px solid black;
+  border-style: dashed;
+  border-width: 5px;
+  border-color: black;
 }
 
 p {
