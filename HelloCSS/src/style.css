@@ -17,8 +17,21 @@ h1 {
   border-style: dashed;
   border-width: 5px;
   border-color: black;
+  padding: 5px 10px 20px 30px;
+  /* padding-top: 5px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-left: 30px; */
 }
 
 p {
   color: red;
+}
+
+.first {
+  font-weight: bold;
+}
+
+.done {
+  text-decoration: line-through;
 }
