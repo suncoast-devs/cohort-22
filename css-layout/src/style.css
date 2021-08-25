@@ -32,6 +32,34 @@ ul.flexbox {
   flex-wrap: wrap;
 }
 
+ul.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: auto;
+  grid-template-areas:
+    'header header header sidebar'
+    'main   main   main   sidebar'
+    '.      footer footer sidebar ';
+}
+
+li {
+  border: 8px solid black;
+}
+
+.A {
+  grid-area: header;
+}
+.B {
+  grid-area: main;
+  padding: 2rem 1rem;
+}
+.C {
+  grid-area: sidebar;
+}
+.D {
+  grid-area: footer;
+}
+
 main {
   display: flex;
 }
