@@ -20,13 +20,14 @@ body {
 }
 
 ul {
-  height: 100vh;
-  background-color: var(--sand);
-
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  background-color: var(--sand);
+}
 
+ul.flexbox {
   display: flex;
   flex-wrap: wrap;
 }
