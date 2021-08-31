@@ -42,3 +42,20 @@ const doubled = numbers.map(function (someNumber: number): string {
 console.log(doubled)
 console.log(lengths)
 console.log(uppercased)
+
+// C#:    colors.Where(color => color.Length > 3)
+const longColors = colors.filter((color) => color.length > 3)
+console.log(longColors)
+
+const total = numbers.reduce(
+  /* reduction function */
+  function (currentTotal, currentNumber) {
+    const newTotal = currentTotal + currentNumber
+
+    return newTotal
+  },
+
+  /* initial value*/
+  0
+)
+console.log(total)
