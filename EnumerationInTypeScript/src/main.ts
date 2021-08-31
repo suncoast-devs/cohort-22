@@ -47,15 +47,19 @@ console.log(uppercased)
 const longColors = colors.filter((color) => color.length > 3)
 console.log(longColors)
 
+let initialValue = 0
+
 const total = numbers.reduce(
   /* reduction function */
-  function (currentTotal, currentNumber) {
-    const newTotal = currentTotal + currentNumber
-
-    return newTotal
-  },
-
+  (currentTotal, currentNumber) => currentTotal + currentNumber,
   /* initial value*/
-  0
+  initialValue
 )
+
+const product = numbers.reduce(
+  (currentProduct, currentNumber) => currentProduct * currentNumber,
+  1
+)
+
+console.log(product)
 console.log(total)
