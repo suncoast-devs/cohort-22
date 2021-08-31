@@ -1,9 +1,15 @@
 import './style.css'
 
-const colors = ['red', 'green', 'blue']
+console.clear()
 
-function logSomeColor(color: string, index: number) {
-  console.log(`The color at position ${index} is ${color}`)
+const colors = ['red', 'green', 'blue']
+const lengths: number[] = []
+
+function logSomeColor(color: string) {
+  const lengthOfColor = color.length
+
+  lengths.push(lengthOfColor)
 }
 
 colors.forEach(logSomeColor)
+console.log(lengths)
