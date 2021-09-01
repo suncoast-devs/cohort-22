@@ -18,6 +18,10 @@ function handleClickSquare(event: MouseEvent) {
   if (thingClickedOn instanceof HTMLLIElement) {
     thingClickedOn.textContent = currentPlayer
 
+    // Adds the taken class so that we SHOW the user
+    // they can't select this item!
+    thingClickedOn.classList.add('taken')
+
     if (currentPlayer === 'X') {
       currentPlayer = 'O'
     } else {
