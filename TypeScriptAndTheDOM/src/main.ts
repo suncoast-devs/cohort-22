@@ -8,6 +8,12 @@ let moveCounter = 0
 // Because the event tells us the target
 // and the target is the thing we clicked on!
 function handleClickSquare(event: MouseEvent) {
+  // After this handler, stop the bubbling. End it here...
+  event.stopPropagation()
+
+  // Don't do your NATURAL behavior, I'm overriding
+  event.preventDefault()
+
   const thingClickedOn = event.target
 
   // If the thing clicked on is an LI Element
