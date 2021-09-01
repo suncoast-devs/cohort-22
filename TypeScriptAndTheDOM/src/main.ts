@@ -1,11 +1,17 @@
 import './style.css'
 
-const firstListItem = document.querySelector('li')
-
+// Generic and works for ANY `li`
+//
+// Because the event tells us the target
+// and the target is the thing we clicked on!
 function handleClickSquare(event) {
   const thingClickedOn = event.target
 
   thingClickedOn.textContent = 'X'
 }
 
-firstListItem?.addEventListener('click', handleClickSquare)
+const allSquares = document.querySelectorAll('li')
+
+allSquares.forEach((square) =>
+  square.addEventListener('click', handleClickSquare)
+)
