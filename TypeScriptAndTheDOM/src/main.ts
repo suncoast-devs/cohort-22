@@ -16,6 +16,14 @@ function handleClickSquare(event: MouseEvent) {
   //      the thingClickedOn is an LI element, and thus we can
   //      change its textContent
   if (thingClickedOn instanceof HTMLLIElement) {
+    // If the element ALREADY has `taken` we shouldn't
+    // let them click again! We do this by ENDING (returning)
+    // from the function RIGHT AWAY
+    if (thingClickedOn.classList.contains('taken')) {
+      console.log('NOPES')
+      return
+    }
+
     thingClickedOn.textContent = currentPlayer
 
     // Adds the taken class so that we SHOW the user
