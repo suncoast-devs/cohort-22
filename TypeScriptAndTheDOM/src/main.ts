@@ -1,5 +1,7 @@
 import './style.css'
 
+let currentPlayer: 'X' | 'O' = 'X'
+
 // Generic and works for ANY `li`
 //
 // Because the event tells us the target
@@ -14,7 +16,13 @@ function handleClickSquare(event: MouseEvent) {
   //      the thingClickedOn is an LI element, and thus we can
   //      change its textContent
   if (thingClickedOn instanceof HTMLLIElement) {
-    thingClickedOn.textContent = 'X'
+    thingClickedOn.textContent = currentPlayer
+
+    if (currentPlayer === 'X') {
+      currentPlayer = 'O'
+    } else {
+      currentPlayer = 'X'
+    }
   }
 }
 
