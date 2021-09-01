@@ -1,6 +1,7 @@
 import './style.css'
 
 let currentPlayer: 'X' | 'O' = 'X'
+let moveCounter = 0
 
 // Generic and works for ANY `li`
 //
@@ -34,6 +35,14 @@ function handleClickSquare(event: MouseEvent) {
       currentPlayer = 'O'
     } else {
       currentPlayer = 'X'
+    }
+
+    // Increment the move counter!
+    moveCounter++
+
+    const header = document.querySelector('h1')
+    if (header instanceof HTMLHeadingElement) {
+      header.textContent = `Move ${moveCounter} of Tic Tac Toe`
     }
   }
 }
