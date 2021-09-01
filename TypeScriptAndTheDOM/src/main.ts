@@ -47,8 +47,13 @@ function handleClickSquare(event: MouseEvent) {
   }
 }
 
-const allSquares = document.querySelectorAll('li')
+// const allSquares = document.querySelectorAll('li')
+// allSquares.forEach((square) =>
+//   square.addEventListener('click', handleClickSquare)
+// )
 
-allSquares.forEach((square) =>
-  square.addEventListener('click', handleClickSquare)
-)
+const gameBoard = document.querySelector('ul')
+
+if (gameBoard instanceof HTMLUListElement) {
+  gameBoard.addEventListener('click', handleClickSquare)
+}
