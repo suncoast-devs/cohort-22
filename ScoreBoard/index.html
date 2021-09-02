@@ -1,13 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+  <head lang="en">
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My App</title>
+    <title>Scoreboard</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <p>Hello, World</p>
-    <script type="module" src="/src/main.ts"></script>
+    <header>
+      <h1>My Score Board</h1>
+    </header>
+    <main>
+      <section class="team1">
+        <h2>Team 1</h2>
+        <h3>0</h3>
+        <fieldset>
+          <input type="text" placeholder="Name" />
+        </fieldset>
+
+        <fieldset>
+          <i class="add fas fa-2x fa-plus-circle"></i>
+          <i class="subtract fas fa-2x fa-minus-circle"></i>
+        </fieldset>
+      </section>
+
+      <section class="team2">
+        <h2>Team 2</h2>
+        <h3>0</h3>
+        <fieldset>
+          <input type="text" placeholder="Name" />
+        </fieldset>
+
+        <fieldset>
+          <i class="add fas fa-2x fa-plus-circle"></i>
+          <i class="subtract fas fa-2x fa-minus-circle"></i>
+        </fieldset>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts" charset="utf-8"></script>
   </body>
 </html>

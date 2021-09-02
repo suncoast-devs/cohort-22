@@ -9,4 +9,62 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-color: #f1e6eb;
+  color: #2b303a;
+}
+
+h1 {
+  text-align: center;
+  font-family: Monospace;
+  margin: 1rem 0 3rem 0;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+section {
+  min-width: 20rem;
+  border: thin solid #7c7c7c;
+  border-radius: 0.3rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section h2,
+section p {
+  text-align: center;
+}
+
+section h3 {
+  margin: 1rem 0;
+  font-family: Monospace;
+  font-size: 3rem;
+}
+
+fieldset {
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+}
+
+fieldset input {
+  padding: 0.5rem;
+}
+
+fieldset i {
+  margin: 0 0.2rem;
+}
+
+fieldset i.add {
+  color: green;
+}
+
+fieldset i.subtract {
+  color: #f64545;
 }
