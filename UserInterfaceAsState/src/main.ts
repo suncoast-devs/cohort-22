@@ -3,18 +3,65 @@ import './style.css'
 const root = document.querySelector('#root')
 
 type Team = {
+  id: number
   name: string
   score: number
 }
 
 const teamOne: Team = {
+  id: 1,
   name: 'Team 1',
   score: 0,
 }
 
 const teamTwo: Team = {
+  id: 2,
   name: 'Team 2',
   score: 0,
+}
+
+function renderTeam(team: Team) {
+  const html = `
+  <section class="team${team.id}">
+    <h2>${team.name}</h2>
+    <h3>${team.score}</h3>
+    <fieldset>
+      <input type="text" placeholder="Name" value="${team.name}" />
+    </fieldset>
+
+    <fieldset>
+      <i class="add fas fa-2x fa-plus-circle"></i>
+      <i class="subtract fas fa-2x fa-minus-circle"></i>
+    </fieldset>
+  </section>
+  `
+
+  return html
+}
+
+function setupListeners(team: Team) {
+  document
+    .querySelector(`.team${team.id} .add`)
+    ?.addEventListener('click', function () {
+      team.score++
+      render()
+    })
+
+  document
+    .querySelector(`.team${team.id} .subtract`)
+    ?.addEventListener('click', function () {
+      team.score--
+      render()
+    })
+
+  document
+    .querySelector(`.team${team.id} input`)
+    ?.addEventListener('input', function (event) {
+      const target = event.target as HTMLInputElement
+
+      team.name = target?.value
+      render()
+    })
 }
 
 function render() {
@@ -23,31 +70,8 @@ function render() {
     <h1>My Score Board</h1>
   </header>
   <main>
-    <section class="team1">
-      <h2>${teamOne.name}</h2>
-      <h3>${teamOne.score}</h3>
-      <fieldset>
-        <input type="text" placeholder="Name" value="${teamOne.name}" />
-      </fieldset>
-
-      <fieldset>
-        <i class="add fas fa-2x fa-plus-circle"></i>
-        <i class="subtract fas fa-2x fa-minus-circle"></i>
-      </fieldset>
-    </section>
-
-    <section class="team2">
-      <h2>${teamTwo.name}</h2>
-      <h3>${teamTwo.score}</h3>
-      <fieldset>
-        <input type="text" placeholder="Name" value="${teamTwo.name}" />
-      </fieldset>
-
-      <fieldset>
-        <i class="add fas fa-2x fa-plus-circle"></i>
-        <i class="subtract fas fa-2x fa-minus-circle"></i>
-      </fieldset>
-    </section>
+    ${renderTeam(teamOne)}
+    ${renderTeam(teamTwo)}
   </main>
   `
 
@@ -55,45 +79,8 @@ function render() {
     root.innerHTML = html
   }
 
-  document.querySelector('.team1 .add')?.addEventListener('click', function () {
-    teamOne.score++
-    render()
-  })
-
-  document
-    .querySelector('.team1 .subtract')
-    ?.addEventListener('click', function () {
-      teamOne.score--
-      render()
-    })
-
-  document
-    .querySelector('.team1 input')
-    ?.addEventListener('input', function (event) {
-      const target = event.target as HTMLInputElement
-
-      teamOne.name = target?.value
-      render()
-    })
-
-  document.querySelector('.team2 .add')?.addEventListener('click', function () {
-    teamTwo.score++
-    render()
-  })
-  document
-    .querySelector('.team2 .subtract')
-    ?.addEventListener('click', function () {
-      teamTwo.score--
-      render()
-    })
-  document
-    .querySelector('.team2 input')
-    ?.addEventListener('input', function (event) {
-      const target = event.target as HTMLInputElement
-
-      teamTwo.name = target?.value
-      render()
-    })
+  setupListeners(teamOne)
+  setupListeners(teamTwo)
 }
 
 render()
