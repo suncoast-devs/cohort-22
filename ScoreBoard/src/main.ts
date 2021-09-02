@@ -19,6 +19,13 @@ function handleClickOnTeamOnePlusButton() {
 teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
 
 function handleClickOnTeamOneMinusButton() {
+  // Guard clause here to protect the code below...
+  if (teamOneScore === 0) {
+    console.debug('Ooops, user tried to go less than 0')
+    // GUARD, early return
+    return
+  }
+
   teamOneScore--
 
   if (teamOneScoreText) {
