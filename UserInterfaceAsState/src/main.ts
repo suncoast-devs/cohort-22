@@ -3,6 +3,8 @@ import './style.css'
 // State
 let counter = 0
 
+const root = document.querySelector('#root')
+
 function render() {
   const html = `
   <p>${counter + 0}</p>
@@ -15,7 +17,9 @@ function render() {
   <button>Increment This</button>
   `
 
-  document.body.innerHTML = html
+  if (root) {
+    root.innerHTML = html
+  }
 
   // After we create the HTML we can
   // now setup our listener for clicks
