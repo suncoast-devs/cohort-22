@@ -5,16 +5,20 @@ import './style.css'
 
 const teamOnePlusButton = document.querySelector('i')
 const teamOneMinusButton = document.querySelector('i.subtract')
-const teamOneScore = document.querySelector('h3')
+const teamOneScoreText = document.querySelector('h3')
+let teamOneScore = 0
 
 function handleClickOnTeamOnePlusButton() {
-  console.log('I clicked on team one plus button')
+  teamOneScore++
+
+  console.log(teamOneScore)
 }
 
 teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
 
-function handleClicikOnTeamOneMinusButton() {
-  console.log('I clicked on team one minus button')
+function handleClickOnTeamOneMinusButton() {
+  teamOneScore--
+  console.log(teamOneScore)
 }
 
-teamOneMinusButton?.addEventListener('click', handleClicikOnTeamOneMinusButton0)
+teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
