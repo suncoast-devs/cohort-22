@@ -46,7 +46,7 @@ function handleClickOnTeamOneMinusButton() {
 
 teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
 
-function teamOneNameInputChanged(event: any) {
+function teamOneNameInputChanged(event: Event) {
   const inputThatWasChanged = event.target
 
   if (inputThatWasChanged instanceof HTMLInputElement) {
