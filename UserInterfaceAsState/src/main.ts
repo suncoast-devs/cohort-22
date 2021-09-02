@@ -2,11 +2,20 @@ import './style.css'
 
 const root = document.querySelector('#root')
 
-let teamOneName = 'Team 1'
-let teamOneScore = 0
+type Team = {
+  name: string
+  score: number
+}
 
-let teamTwoName = 'Team 2'
-let teamTwoScore = 0
+const teamOne: Team = {
+  name: 'Team 1',
+  score: 0,
+}
+
+const teamTwo: Team = {
+  name: 'Team 2',
+  score: 0,
+}
 
 function render() {
   const html = `
@@ -15,10 +24,10 @@ function render() {
   </header>
   <main>
     <section class="team1">
-      <h2>${teamOneName}</h2>
-      <h3>${teamOneScore}</h3>
+      <h2>${teamOne.name}</h2>
+      <h3>${teamOne.score}</h3>
       <fieldset>
-        <input type="text" placeholder="Name" value="${teamOneName}" />
+        <input type="text" placeholder="Name" value="${teamOne.name}" />
       </fieldset>
 
       <fieldset>
@@ -28,10 +37,10 @@ function render() {
     </section>
 
     <section class="team2">
-      <h2>${teamTwoName}</h2>
-      <h3>${teamTwoScore}</h3>
+      <h2>${teamTwo.name}</h2>
+      <h3>${teamTwo.score}</h3>
       <fieldset>
-        <input type="text" placeholder="Name" value="${teamTwoName}" />
+        <input type="text" placeholder="Name" value="${teamTwo.name}" />
       </fieldset>
 
       <fieldset>
@@ -47,14 +56,14 @@ function render() {
   }
 
   document.querySelector('.team1 .add')?.addEventListener('click', function () {
-    teamOneScore++
+    teamOne.score++
     render()
   })
 
   document
     .querySelector('.team1 .subtract')
     ?.addEventListener('click', function () {
-      teamOneScore--
+      teamOne.score--
       render()
     })
 
@@ -63,18 +72,18 @@ function render() {
     ?.addEventListener('input', function (event) {
       const target = event.target as HTMLInputElement
 
-      teamOneName = target?.value
+      teamOne.name = target?.value
       render()
     })
 
   document.querySelector('.team2 .add')?.addEventListener('click', function () {
-    teamTwoScore++
+    teamTwo.score++
     render()
   })
   document
     .querySelector('.team2 .subtract')
     ?.addEventListener('click', function () {
-      teamTwoScore--
+      teamTwo.score--
       render()
     })
   document
@@ -82,7 +91,7 @@ function render() {
     ?.addEventListener('input', function (event) {
       const target = event.target as HTMLInputElement
 
-      teamTwoName = target?.value
+      teamTwo.name = target?.value
       render()
     })
 }
