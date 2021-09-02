@@ -4,6 +4,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
+    "prestart": "npm install",
     "start": "vite",
     "predeploy": "npm run build",
     "deploy": "netlify deploy --prod --dir=dist"
