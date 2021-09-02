@@ -8,17 +8,28 @@ type Team = {
   score: number
 }
 
-const teamOne: Team = {
-  id: 1,
-  name: 'Team 1',
-  score: 0,
-}
-
-const teamTwo: Team = {
-  id: 2,
-  name: 'Team 2',
-  score: 0,
-}
+let teams: Team[] = [
+  {
+    id: 1,
+    name: 'Team 1',
+    score: 0,
+  },
+  {
+    id: 2,
+    name: 'Team 2',
+    score: 12,
+  },
+  {
+    id: 3,
+    name: 'Team 3',
+    score: 90,
+  },
+  {
+    id: 4,
+    name: 'SDG Coders',
+    score: 9001,
+  },
+]
 
 function renderTeam(team: Team) {
   const html = `
@@ -70,17 +81,53 @@ function render() {
     <h1>My Score Board</h1>
   </header>
   <main>
-    ${renderTeam(teamOne)}
-    ${renderTeam(teamTwo)}
+  ${teams
+    .map(function (team) {
+      return renderTeam(team)
+    })
+    .join('')}
   </main>
+  <footer>
+    <button>Reset</button>
+  </footer>
   `
 
   if (root) {
     root.innerHTML = html
   }
 
-  setupListeners(teamOne)
-  setupListeners(teamTwo)
+  teams.forEach(function (team) {
+    setupListeners(team)
+  })
+
+  document
+    .querySelector('footer button')
+    ?.addEventListener('click', function () {
+      teams = [
+        {
+          id: 1,
+          name: 'Team 1',
+          score: 0,
+        },
+        {
+          id: 2,
+          name: 'Team 2',
+          score: 0,
+        },
+        {
+          id: 3,
+          name: 'Team 3',
+          score: 0,
+        },
+        {
+          id: 4,
+          name: 'SDG Coders',
+          score: 0,
+        },
+      ]
+
+      render()
+    })
 }
 
 render()
