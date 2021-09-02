@@ -11,14 +11,19 @@ let teamOneScore = 0
 function handleClickOnTeamOnePlusButton() {
   teamOneScore++
 
-  console.log(teamOneScore)
+  if (teamOneScoreText) {
+    teamOneScoreText.textContent = `${teamOneScore}`
+  }
 }
 
 teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
 
 function handleClickOnTeamOneMinusButton() {
   teamOneScore--
-  console.log(teamOneScore)
+
+  if (teamOneScoreText) {
+    teamOneScoreText.textContent = `${teamOneScore}`
+  }
 }
 
 teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
