@@ -23,11 +23,15 @@ export function Counter() {
       <p>
         Hi there {name} the count is {counter}
       </p>
-      <p>{name}</p>
-      <p>{name}</p>
+      <p>{name.toLowerCase()}</p>
+      <p>{name.toUpperCase()}</p>
       <button onClick={() => setCounter(counter + 1)}>Increment</button>
       <p>
-        <input value={name} onChange={(event) => setName(event.target.value)} />
+        <input
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
       </p>
     </div>
   )
