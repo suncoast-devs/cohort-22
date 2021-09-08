@@ -1,0 +1,27 @@
+[
+  {
+    "id": 42,
+    "title": "SDG Invents New Serialization Format!",
+    "body": "SDG Brings the 'A' to JSON and invents `JASON` a next generation serialization format."
+  },
+  {
+    "id": 99,
+    "title": "SDG To Teach Haskell In Place of TypeScript",
+    "body": "Taking type systems and functional programming to the next level with Haskell!"
+  },
+  {
+    "id": 100,
+    "title": "SDG Standardizes on React",
+    "body": "React is the best library for learning front end Web"
+  },
+  {
+    "id": 101,
+    "title": "This data comes from JSON!",
+    "body": "React works with data using tools we already know!"
+  },
+  {
+    "id": 102,
+    "title": "Dynamic web applications are fun",
+    "body": "More film at 11"
+  }
+]
