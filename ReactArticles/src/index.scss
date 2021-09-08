@@ -18,13 +18,17 @@ body {
 }
 
 article {
+  background: url('./images/banner.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+
   max-width: 20rem;
   padding: 1rem 3rem;
   font-size: 0.8rem;
 }
 
 article .read-more {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 article h2 {
