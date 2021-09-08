@@ -7,15 +7,28 @@ export function Counter() {
   // const setCounter = valueAndSetMethod[1]
 
   const [counter, setCounter] = useState(0)
+  const [name, setName] = useState('')
 
-  function handleClickCounter() {
-    setCounter(counter + 1)
-  }
+  // function handleClickCounter() {
+  //   setCounter(counter + 1)
+  // }
+
+  // function handleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
+  //   // I need the event here...
+  //   setName(event.target.value)
+  // }
 
   return (
     <div>
-      <p>The count is {counter}</p>
-      <button onClick={handleClickCounter}>Increment</button>
+      <p>
+        Hi there {name} the count is {counter}
+      </p>
+      <p>{name}</p>
+      <p>{name}</p>
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
+      <p>
+        <input value={name} onChange={(event) => setName(event.target.value)} />
+      </p>
     </div>
   )
 }
