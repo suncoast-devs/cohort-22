@@ -11,7 +11,9 @@ export function Counter() {
   function handleClickCounter(event: React.MouseEvent) {
     event.preventDefault()
 
-    console.log('CLICKED!')
+    const newCounter = counter + 1
+
+    setCounter(newCounter)
   }
 
   return (
