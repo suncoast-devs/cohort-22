@@ -1,5 +1,18 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@700&display=swap');
+
 :root {
   font: 16px / 1 sans-serif;
+
+  // SDG brand colors
+  --asphalt: #2f3737;
+  --bright-sky: #80ced2;
+  --lime: #b1d133;
+  --night-sky: #85577e;
+  --sand: #f7f0da;
+  --sea: #5a9090;
+  --sun: #d5562b;
+  --tangerine: #f99d1b;
 }
 
 html {
@@ -9,4 +22,40 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-color: var(--sand);
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+figure {
+  display: grid;
+  padding: 0;
+  // margin: 0 0 2rem 0;
+}
+
+figure i {
+  font-size: 20rem;
+  color: var(--sea);
+  grid-area: 1 / 1;
+}
+
+figure span {
+  font-family: 'Overpass Mono', monospace;
+  color: var(--asphalt);
+  font-size: 5rem;
+
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1ex;
+}
+
+input {
+  width: 100%;
 }
