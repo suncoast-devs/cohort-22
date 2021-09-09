@@ -12,6 +12,11 @@ export function App() {
   })
 
   async function handleClickCell(row: number, column: number) {
+    // If this is an invalid click
+    if (game.id === null || game.winner || game.board[row][column] !== ' ') {
+      return
+    }
+
     // console.log(`You clicked on row ${row} and column ${column}`)
     console.log({ row, column })
 
