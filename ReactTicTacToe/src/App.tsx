@@ -54,10 +54,12 @@ export function App() {
     }
   }
 
+  const header = game.winner ? `${game.winner} is the winner` : 'Tic Tac Toe'
+
   return (
     <div>
       <h1>
-        Tic Tac Toe - {game.id} <button onClick={handleNewGame}>New</button>
+        {header} - {game.id} <button onClick={handleNewGame}>New</button>
       </h1>
       <ul>
         <li onClick={() => handleClickCell(0, 0)}>{game.board[0][0]}</li>
