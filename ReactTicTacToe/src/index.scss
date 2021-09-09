@@ -52,6 +52,10 @@ main {
   /* Set the background color that will show through the gap */
   background-color: var(--square-text-color);
 
+  &.game-over button {
+    cursor: not-allowed;
+  }
+
   button {
     /* Use a monospace font */
     font-family: monospace;

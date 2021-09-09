@@ -78,7 +78,7 @@ export function App() {
       <h1>
         {header} - {game.id} <button onClick={handleNewGame}>New</button>
       </h1>
-      <main>
+      <main className={game.winner === null ? undefined : 'game-over'}>
         {game.board.map((row, rowIndex) =>
           row.map((column, columnIndex) => (
             <button
