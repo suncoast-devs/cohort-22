@@ -1,15 +1,14 @@
 :root {
-  font: 16px / 1 sans-serif;
+  /* CSS Variables for all the font colors and sizes. Try changing these! */
+  --header-background: #5661b3;
+  --header-text-color: #fff9c2;
+  --header-font-size: 2rem;
+  --square-font-size: calc(8 * var(--header-font-size));
+  --square-text-color: #5661b3;
+  --square-background-color: #e6e8ff;
+  --square-border: 3px solid var(--square-text-color);
 
-  // SDG brand colors
-  --asphalt: #2f3737;
-  --bright-sky: #80ced2;
-  --lime: #b1d133;
-  --night-sky: #85577e;
-  --sand: #f7f0da;
-  --sea: #5a9090;
-  --sun: #d5562b;
-  --tangerine: #f99d1b;
+  font: 16px / 1 sans-serif;
 }
 
 html {
@@ -19,4 +18,80 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+}
+
+h1 {
+  /* center the header */
+  text-align: center;
+
+  /* Use a sans serif font with a little spacing and color */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.4rem;
+  font-size: var(--header-font-size);
+  color: var(--header-text-color);
+
+  /* Remove margins and set a little padding */
+  margin: 0;
+  padding: var(--header-font-size);
+
+  /* Set a background color for the header */
+  background-color: var(--header-background);
+}
+
+ul,
+li {
+  /* Be gone margins! */
+  margin: 0;
+  padding: 0;
+
+  /* and list styles */
+  list-style: none;
+}
+
+ul {
+  /* Make the height of the list equal to the height of the page MINUS the height taken by the header */
+  height: calc(100vh - 3 * var(--header-font-size));
+
+  /* Display the list as a 3 column and three row grid */
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+
+  /* Add a little gap between to allow the background color through */
+  gap: 1rem;
+
+  /* Set the background color that will show through the gap */
+  background-color: var(--square-text-color);
+}
+
+ul li {
+  /* Use a monospace font */
+  font-family: monospace;
+  font-size: var(--square-font-size);
+
+  /* Style the background color of the item */
+  background-color: var(--square-background-color);
+
+  /* Make the cursor a pointer by default */
+  cursor: pointer;
+
+  /* Center the text in the LI */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Don't let the squares become too small */
+  min-width: 3rem;
+  min-height: 10rem;
+}
+
+ul li.taken {
+  cursor: not-allowed;
+}
+
+ul li.small {
+  font-size: 4rem;
+}
+
+ul li.not-allowed-click {
+  background-color: red;
 }
