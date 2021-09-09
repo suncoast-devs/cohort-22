@@ -71,6 +71,7 @@ export function App() {
           row.map((column, columnIndex) => (
             <li
               key={columnIndex}
+              className={column === ' ' ? undefined : 'taken'}
               onClick={() => handleClickCell(rowIndex, columnIndex)}
             >
               {game.board[rowIndex][columnIndex]}
