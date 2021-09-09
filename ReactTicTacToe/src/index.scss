@@ -38,17 +38,7 @@ h1 {
   background-color: var(--header-background);
 }
 
-ul,
-li {
-  /* Be gone margins! */
-  margin: 0;
-  padding: 0;
-
-  /* and list styles */
-  list-style: none;
-}
-
-ul {
+main {
   /* Make the height of the list equal to the height of the page MINUS the height taken by the header */
   height: calc(100vh - 3 * var(--header-font-size));
 
@@ -61,37 +51,41 @@ ul {
 
   /* Set the background color that will show through the gap */
   background-color: var(--square-text-color);
-}
 
-ul li {
-  /* Use a monospace font */
-  font-family: monospace;
-  font-size: var(--square-font-size);
+  button {
+    /* Use a monospace font */
+    font-family: monospace;
+    font-size: var(--square-font-size);
 
-  /* Style the background color of the item */
-  background-color: var(--square-background-color);
+    /* Style the background color of the item */
+    background-color: var(--square-background-color);
 
-  /* Make the cursor a pointer by default */
-  cursor: pointer;
+    /* Make the cursor a pointer by default */
+    cursor: pointer;
 
-  /* Center the text in the LI */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    /* Center the text in the LI */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  /* Don't let the squares become too small */
-  min-width: 3rem;
-  min-height: 10rem;
-}
+    /* Don't let the squares become too small */
+    min-width: 3rem;
+    min-height: 10rem;
 
-ul li.taken {
-  cursor: not-allowed;
-}
+    &:focus {
+      background-color: red;
+    }
 
-ul li.small {
-  font-size: 4rem;
-}
+    &.taken {
+      cursor: not-allowed;
+    }
 
-ul li.not-allowed-click {
-  background-color: red;
+    &.small {
+      font-size: 4rem;
+    }
+
+    &.not-allowed-click {
+      background-color: red;
+    }
+  }
 }
