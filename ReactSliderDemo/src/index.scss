@@ -1,5 +1,5 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@700&display=swap');
 
 :root {
   font: 16px / 1 sans-serif;
@@ -32,31 +32,43 @@ main {
   min-height: 100vh;
 }
 
-figure {
+.temperature {
   display: grid;
   padding: 0;
-  // margin: 0 0 2rem 0;
 }
 
-figure i {
+.dial {
   font-size: 20rem;
   color: var(--sea);
   grid-area: 1 / 1;
+  pointer-events: none;
 }
 
-figure span {
-  font-family: 'Overpass Mono', monospace;
+.temperature-container {
+  font-family: 'Fira Mono', monospace;
   color: var(--asphalt);
-  font-size: 5rem;
 
   grid-area: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 1ex;
 }
 
-input {
+.temperature-number {
+  font-size: 5rem;
+  line-height: 5rem;
+  vertical-align: middle;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '\000B0';
+    right: -1ex;
+    top: -0.3ex;
+  }
+}
+
+.slider {
   width: 100%;
   cursor: pointer;
 }

@@ -21,12 +21,18 @@ export function App() {
 
   return (
     <main>
-      <section className="gauge">
-        <figure>
-          <i className="fas fa-circle-notch" style={{ transform, color }} />
-          <span>{temperature}&deg;</span>
+      <section>
+        <figure className="temperature">
+          <i
+            className="dial fas fa-circle-notch"
+            style={{ transform, color }}
+          />
+          <span className="temperature-container">
+            <span className="temperature-number">{temperature}</span>
+          </span>
         </figure>
         <input
+          className="slider"
           type="range"
           min="0"
           max="120"
