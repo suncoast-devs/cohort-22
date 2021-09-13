@@ -81,16 +81,32 @@ export function App() {
       <main className={game.winner === null ? undefined : 'game-over'}>
         {game.board.map((row, rowIndex) =>
           row.map((column, columnIndex) => (
-            <button
+            <Cell
               key={columnIndex}
-              className={column === ' ' ? undefined : 'taken'}
-              onClick={() => handleClickCell(rowIndex, columnIndex)}
-            >
-              {game.board[rowIndex][columnIndex]}
-            </button>
+              rowIndex={rowIndex}
+              columnIndex={columnIndex}
+              cell={game.board[rowIndex][columnIndex]}
+            />
           ))
         )}
       </main>
     </div>
+  )
+}
+
+type CellProps = {
+  cell: string
+  rowIndex: number
+  columnIndex: number
+}
+
+function Cell(props: CellProps) {
+  return (
+    <button
+      className={props.cell === ' ' ? undefined : 'taken'}
+      // onClick={() => handleClickCell(props.rowIndex, props.columnIndex)}
+    >
+      {props.cell}
+    </button>
   )
 }
