@@ -1,8 +1,6 @@
 import React from 'react'
 
-export function Cell(props: CellProps) {
-  const { cell, rowIndex, columnIndex, recordMove } = props
-
+export function Cell({ cell, rowIndex, columnIndex, recordMove }: CellProps) {
   function handleClickCell() {
     console.log(`You clicked on ${rowIndex} - ${columnIndex}`)
 
