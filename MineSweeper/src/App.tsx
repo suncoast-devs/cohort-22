@@ -102,7 +102,7 @@ export function App() {
     }
 
     if ([1, 2, 3, 4, 5, 6, 7, 8].includes(Number(value))) {
-      return 'cell-number'
+      return `cell-number cell-${value}`
     }
 
     return undefined

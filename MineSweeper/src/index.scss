@@ -102,5 +102,18 @@ button.cell-free {
 }
 
 button.cell-number {
-  color: rgb(242, 255, 0);
+  font-weight: bold;
+  font-size: 1.7rem;
+}
+
+button.cell-1 {
+  color: red;
+}
+
+button.cell-2 {
+  color: pink;
+}
+
+button.cell-3 {
+  color: orange;
 }
