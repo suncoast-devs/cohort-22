@@ -31,14 +31,14 @@ const ALPHABET = [
 ]
 
 export function App() {
-  const [guessedLetters, setGuessedLetters] = useState('')
+  const [guessedLetters, setGuessedLetters] = useState(['G', 'A', 'V'])
   const secretWord = words[0]
 
   console.log(secretWord)
 
   function clickOnLetter(letter: string) {
     // Make a new state USING the old state plus the information
-    const newValueForGuessedLetters = `${guessedLetters}${letter}`
+    const newValueForGuessedLetters = [...guessedLetters, letter]
 
     setGuessedLetters(newValueForGuessedLetters)
   }
