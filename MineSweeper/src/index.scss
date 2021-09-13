@@ -1,0 +1,22 @@
+:root {
+  font: 16px / 1 sans-serif;
+
+  // SDG brand colors
+  --asphalt: #2f3737;
+  --bright-sky: #80ced2;
+  --lime: #b1d133;
+  --night-sky: #85577e;
+  --sand: #f7f0da;
+  --sea: #5a9090;
+  --sun: #d5562b;
+  --tangerine: #f99d1b;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+}
