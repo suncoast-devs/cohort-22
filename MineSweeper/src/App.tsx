@@ -88,24 +88,23 @@ export function App() {
   }
 
   function transformCellClassName(value: string | number) {
-    // return the appropriate className
-    if (value === 'F') {
-      return 'cell-flag'
-    }
+    switch (value) {
+      case 'F':
+        return 'cell-flag'
 
-    if (value === '*') {
-      return 'cell-bomb'
-    }
+      case '*':
+        return 'cell-bomb'
 
-    if (value === '_') {
-      return 'cell-free'
-    }
+      case '_':
+        return 'cell-free'
 
-    if ([1, 2, 3, 4, 5, 6, 7, 8].includes(Number(value))) {
-      return `cell-number cell-${value}`
-    }
+      case ' ':
+        return undefined
 
-    return undefined
+      default:
+        // Must be a 1,2,3,etc
+        return `cell-number cell-${value}`
+    }
   }
 
   return (
