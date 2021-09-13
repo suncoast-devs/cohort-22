@@ -16,9 +16,10 @@ export function App() {
     state: undefined,
     mines: undefined,
   })
+  const [difficulty, setDifficulty] = useState<0 | 1 | 2>(0)
 
-  async function newEasyGame() {
-    const gameOptions = { difficulty: 0 }
+  async function newGame(newGameDifficulty: 0 | 1 | 2) {
+    const gameOptions = { difficulty: newGameDifficulty }
 
     const url = 'https://minesweeper-api.herokuapp.com/games'
 
@@ -36,6 +37,7 @@ export function App() {
       // What to do if the response is ok
       const newGameStateJson = await response.json()
 
+      setDifficulty(newGameDifficulty)
       setGame(newGameStateJson)
     }
   }
@@ -111,14 +113,14 @@ export function App() {
     <main>
       <h1>Mine Sweeper</h1>
       <h2>
-        <button onClick={newEasyGame}>New Easy Game</button>
-        <button>New Intermediate Game</button>
-        <button>New Difficult Game</button>
+        <button onClick={() => newGame(0)}>New Easy Game</button>
+        <button onClick={() => newGame(1)}>New Intermediate Game</button>
+        <button onClick={() => newGame(2)}>New Difficult Game</button>
       </h2>
       <h3>Mines: {game.mines}</h3>
       <h3>Game #: {game.id}</h3>
 
-      <section className="difficulty-0">
+      <section className={`difficulty-${difficulty}`}>
         {game.board.map(function (gameRow, row) {
           return gameRow.map(function (square, col) {
             return (
