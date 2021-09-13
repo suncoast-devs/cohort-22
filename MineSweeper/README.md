@@ -1,7 +1,7 @@
 React/MineSweeper questions
 
 - Right and Left click for flags
-- Two dimensional arrays
+- OK - Two dimensional arrays
 - How to customize the display of squares/bombs/flags
-- Updating state, etc.
+- OK - Updating state, etc.
 - localStorage
