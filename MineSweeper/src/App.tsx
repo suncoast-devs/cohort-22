@@ -43,7 +43,7 @@ export function App() {
   async function handleCheckOrFlagCell(
     row: number,
     col: number,
-    action: string
+    action: 'check' | 'flag'
   ) {
     const checkOptions = {
       id: game.id,
