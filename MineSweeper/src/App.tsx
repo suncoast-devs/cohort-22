@@ -40,6 +40,29 @@ export function App() {
     }
   }
 
+  async function handleClickCell(row: number, col: number) {
+    const checkOptions = {
+      id: game.id,
+      row,
+      col,
+    }
+
+    const url = `https://minesweeper-api.herokuapp.com/games/${game.id}/check`
+    const fetchOptions = {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(checkOptions),
+    }
+
+    const response = await fetch(url, fetchOptions)
+
+    if (response.ok) {
+      const newGameStateJson = await response.json()
+
+      setGame(newGameStateJson)
+    }
+  }
+
   return (
     <main>
       <h1>Mine Sweeper</h1>
@@ -50,15 +73,23 @@ export function App() {
       </h2>
       <h3>Mines: {game.mines}</h3>
       <h3>Game #: {game.id}</h3>
-      <h3></h3>
 
-      <ul className="difficulty-0">
-        {game.board.map(function (gameRow) {
-          return gameRow.map(function (square, squareIndex) {
-            return <li key={squareIndex}>{square}</li>
+      <section className="difficulty-0">
+        {game.board.map(function (gameRow, row) {
+          return gameRow.map(function (square, col) {
+            return (
+              <button
+                onClick={function () {
+                  handleClickCell(row, col)
+                }}
+                key={col}
+              >
+                {square}
+              </button>
+            )
           })
         })}
-      </ul>
+      </section>
     </main>
   )
 }

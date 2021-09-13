@@ -30,33 +30,33 @@ main {
   justify-content: center;
 }
 
-ul {
+section {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
 }
 
-ul.difficulty-0 {
+section.difficulty-0 {
   grid-template-columns: repeat(var(--easy-board-size), 1fr);
   grid-template-rows: repeat(var(--easy-board-size), 1fr);
   width: calc(var(--easy-board-size) * var(--easy-cell-size));
   height: calc(var(--easy-board-size) * var(--easy-cell-size));
 }
 
-ul.difficulty-1 {
+section.difficulty-1 {
   grid-template-columns: repeat(var(--intermediate-board-size), 1fr);
   grid-template-rows: repeat(var(--intermediate-board-size), 1fr);
   width: calc(var(--intermediate-board-size) * var(--intermediate-cell-size));
 }
 
-ul.difficulty-2 {
+section.difficulty-2 {
   grid-template-columns: repeat(var(--expert-board-size), 1fr);
   grid-template-rows: repeat(var(--expert-board-size), 1fr);
   width: calc(var(--expert-board-size) * var(--expert-cell-size));
 }
 
-li {
+section button {
   margin: 0;
   padding: 0.5;
   background-color: grey;
@@ -68,35 +68,35 @@ li {
   font-family: 'Courier New', Courier, monospace;
 }
 
-ul.difficulty-0 li {
+section.difficulty-0 button {
   width: var(--easy-cell-size);
   height: var(--easy-cell-size);
 }
 
-ul.difficulty-1 li {
+section.difficulty-1 button {
   width: var(--intermediate-cell-size);
   height: var(--intermediate-cell-size);
 }
 
-ul.difficulty-2 li {
+section.difficulty-2 button {
   width: var(--expert-cell-size);
   height: var(--expert-cell-size);
 }
 
-li.cell-number {
+button.cell-number {
   color: white;
 }
 
-li.cell-bomb {
+button.cell-bomb {
   background-color: #c333;
   color: #f00;
 }
 
-li.cell-flag {
+button.cell-flag {
   background-color: #999;
   color: green;
 }
 
-li.cell-free {
+button.cell-free {
   background-color: yellow;
 }
