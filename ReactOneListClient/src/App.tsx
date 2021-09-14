@@ -12,6 +12,7 @@ type TodoItemType = {
 
 export function App() {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([])
+  const [newTodoText, setNewTodoText] = useState('')
 
   // useEffect has a non-async function
   useEffect(function () {
@@ -32,6 +33,21 @@ export function App() {
     fetchListOfItems()
   }, [])
 
+  async function handleCreateNewTodoItem() {
+    const body = {
+      item: { text: newTodoText },
+    }
+
+    const response = await axios.post(
+      'https://one-list-api.herokuapp.com/items?access_token=cohort22',
+      body
+    )
+
+    if (response.status === 201) {
+      console.log(response.data)
+    }
+  }
+
   return (
     <div className="app">
       <header>
@@ -50,8 +66,23 @@ export function App() {
             )
           })}
         </ul>
-        <form>
-          <input type="text" placeholder="Whats up?" />
+        <form
+          onSubmit={function (event) {
+            // Please form, don't do your usual behavior
+            // *I* will tell you what to do
+            event.preventDefault()
+
+            handleCreateNewTodoItem()
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Whats up?"
+            value={newTodoText}
+            onChange={function (event) {
+              setNewTodoText(event.target.value)
+            }}
+          />
         </form>
       </main>
       <footer>
