@@ -14,8 +14,7 @@ export function App() {
   const [todoItems, setTodoItems] = useState<TodoItemType[]>([])
   const [newTodoText, setNewTodoText] = useState('')
 
-  // useEffect has a non-async function
-  useEffect(function () {
+  function loadAllTheItems() {
     //
     //
     // Our async function inside!
@@ -31,7 +30,10 @@ export function App() {
     //
     //
     fetchListOfItems()
-  }, [])
+  }
+
+  // useEffect has a non-async function
+  useEffect(loadAllTheItems, [])
 
   async function handleCreateNewTodoItem() {
     const body = {
@@ -44,14 +46,7 @@ export function App() {
     )
 
     if (response.status === 201) {
-      const response = await axios.get(
-        'https://one-list-api.herokuapp.com/items?access_token=cohort22'
-      )
-
-      if (response.status === 200) {
-        setTodoItems(response.data)
-        setNewTodoText('')
-      }
+      loadAllTheItems()
     }
   }
 
@@ -64,12 +59,11 @@ export function App() {
         <ul>
           {todoItems.map(function (todoItem) {
             return (
-              <li
+              <TodoItem
                 key={todoItem.id}
-                className={todoItem.complete ? 'completed' : undefined}
-              >
-                {todoItem.text}
-              </li>
+                todoItem={todoItem}
+                reloadItems={loadAllTheItems}
+              />
             )
           })}
         </ul>
@@ -99,5 +93,32 @@ export function App() {
         <p>&copy; 2020 Suncoast Developers Guild</p>
       </footer>
     </div>
+  )
+}
+
+type TodoItemProps = {
+  todoItem: TodoItemType
+  reloadItems: () => void
+}
+
+function TodoItem(props: TodoItemProps) {
+  async function toggleCompleteStatus() {
+    const response = await axios.put(
+      `https://one-list-api.herokuapp.com/items/${props.todoItem.id}?access_token=cohort22`,
+      { item: { complete: !props.todoItem.complete } }
+    )
+
+    if (response.status === 200) {
+      props.reloadItems()
+    }
+  }
+
+  return (
+    <li
+      className={props.todoItem.complete ? 'completed' : undefined}
+      onClick={toggleCompleteStatus}
+    >
+      {props.todoItem.text}
+    </li>
   )
 }
