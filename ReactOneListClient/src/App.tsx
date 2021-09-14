@@ -27,7 +27,14 @@ export function App() {
       <main>
         <ul>
           {todoItems.map(function (todoItem) {
-            return <li key={todoItem.id}>{todoItem.text}</li>
+            return (
+              <li
+                key={todoItem.id}
+                className={todoItem.complete ? 'completed' : undefined}
+              >
+                {todoItem.text}
+              </li>
+            )
           })}
         </ul>
         <form>
