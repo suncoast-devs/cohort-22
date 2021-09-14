@@ -17,6 +17,11 @@ export function App() {
     [count]
   )
 
+  // This gives us a RUN ONCE method when the component first lands on the page!
+  useEffect(function () {
+    console.log(`This runs once when the component first mounts`)
+  }, [])
+
   function handleClickButton() {
     setCount(count + 1)
   }
