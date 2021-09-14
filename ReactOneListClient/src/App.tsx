@@ -44,16 +44,14 @@ export function App() {
     )
 
     if (response.status === 201) {
-      // Gets the response data (a todo item)
-      const newTodo = response.data
+      const response = await axios.get(
+        'https://one-list-api.herokuapp.com/items?access_token=cohort22'
+      )
 
-      // Makes a new array of all the old todo
-      // items (spread) with the new todo at the
-      // end of the array
-      const newTodoItems = [...todoItems, newTodo]
-
-      // Update the array of todo items
-      setTodoItems(newTodoItems)
+      if (response.status === 200) {
+        setTodoItems(response.data)
+        setNewTodoText('')
+      }
     }
   }
 
