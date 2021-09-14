@@ -2,8 +2,16 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import logo from './images/sdg-logo.png'
 
+type TodoItemType = {
+  id: number
+  text: string
+  complete: boolean
+  updated_at: Date
+  completed_at: Date
+}
+
 export function App() {
-  const [todoItems, setTodoItems] = useState([])
+  const [todoItems, setTodoItems] = useState<TodoItemType[]>([])
 
   // useEffect has a non-async function
   useEffect(function () {
