@@ -101,13 +101,16 @@ type TodoItemProps = {
   reloadItems: () => void
 }
 
-function TodoItem({ todoItem, reloadItems }: TodoItemProps) {
+function TodoItem({
+  todoItem: { id, text, complete },
+  reloadItems,
+}: TodoItemProps) {
   // Destructuring the props, allows me to treat them like local variables
 
   async function toggleCompleteStatus() {
     const response = await axios.put(
-      `https://one-list-api.herokuapp.com/items/${todoItem.id}?access_token=cohort22`,
-      { item: { complete: !todoItem.complete } }
+      `https://one-list-api.herokuapp.com/items/${id}?access_token=cohort22`,
+      { item: { complete: !complete } }
     )
 
     if (response.status === 200) {
@@ -117,10 +120,10 @@ function TodoItem({ todoItem, reloadItems }: TodoItemProps) {
 
   return (
     <li
-      className={todoItem.complete ? 'completed' : undefined}
+      className={complete ? 'completed' : undefined}
       onClick={toggleCompleteStatus}
     >
-      {todoItem.text}
+      {text}
     </li>
   )
 }
