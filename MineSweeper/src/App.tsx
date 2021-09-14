@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+type GameDifficulty = 0 | 1 | 2
 
 export function App() {
   const [game, setGame] = useState({
@@ -16,7 +18,29 @@ export function App() {
     state: undefined,
     mines: undefined,
   })
-  const [difficulty, setDifficulty] = useState<0 | 1 | 2>(0)
+  const [difficulty, setDifficulty] = useState<GameDifficulty>(0)
+
+  useEffect(function () {
+    async function loadExistingGame() {
+      const existingGameId = localStorage.getItem('game-id')
+      const existingDifficulty = localStorage.getItem('game-difficulty')
+
+      if (existingGameId && existingDifficulty) {
+        const response = await fetch(
+          `http://minesweeper-api.herokuapp.com/games/${existingGameId}`
+        )
+
+        if (response.ok) {
+          const gameJson = await response.json()
+
+          setGame(gameJson)
+          setDifficulty(Number(existingDifficulty) as GameDifficulty)
+        }
+      }
+    }
+
+    loadExistingGame()
+  }, [])
 
   async function newGame(newGameDifficulty: 0 | 1 | 2) {
     const gameOptions = { difficulty: newGameDifficulty }
@@ -39,6 +63,8 @@ export function App() {
 
       setDifficulty(newGameDifficulty)
       setGame(newGameStateJson)
+      localStorage.setItem('game-id', newGameStateJson.id)
+      localStorage.setItem('game-difficulty', String(newGameDifficulty))
     }
   }
 
