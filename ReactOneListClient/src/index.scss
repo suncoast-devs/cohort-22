@@ -1,15 +1,7 @@
-:root {
-  font: 16px / 1 sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Neucha&display=swap');
 
-  // SDG brand colors
-  --asphalt: #2f3737;
-  --bright-sky: #80ced2;
-  --lime: #b1d133;
-  --night-sky: #85577e;
-  --sand: #f7f0da;
-  --sea: #5a9090;
-  --sun: #d5562b;
-  --tangerine: #f99d1b;
+:root {
+  font: 24px / 1 sans-serif;
 }
 
 html {
@@ -18,5 +10,104 @@ html {
 
 body {
   margin: 0;
-  min-height: 100%;
+  padding: 0;
+  color: #fff;
+  font-family: 'Comfortaa';
+  background-color: #309869;
+}
+
+.app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1;
+}
+
+input {
+  border: none;
+  padding: 0.3em 0.2em 0;
+  width: 100%;
+  color: #074863;
+  font-size: 1em;
+  line-height: 1.5em;
+  background-color: #fff;
+  opacity: 0.5;
+}
+
+input:focus {
+  outline: 0;
+  background-color: #fff;
+  opacity: 1;
+}
+
+a:link,
+a:visited {
+  line-height: 1rem;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.6rem;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0.7em;
+
+    &.completed {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  }
+}
+
+ul,
+input {
+  font-family: 'Neucha', cursive;
+}
+
+ul li,
+form {
+  align-items: flex-start;
+  display: flex;
+}
+
+header,
+main,
+footer {
+  max-width: 30em;
+}
+
+footer {
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
+  text-align: center;
+
+  img {
+    vertical-align: middle;
+    // animation: spin infinite 10s linear;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
