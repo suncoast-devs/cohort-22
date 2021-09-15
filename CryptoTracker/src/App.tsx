@@ -24,7 +24,7 @@ export function App() {
   return (
     <div>
       {coins.map((coin) => (
-        <p>{coin.name}</p>
+        <p key={coin.name}>{coin.name}</p>
       ))}{' '}
     </div>
   )
