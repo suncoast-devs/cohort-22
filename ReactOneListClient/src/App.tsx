@@ -22,6 +22,9 @@ export function App() {
           <Route exact path="/">
             <TodoList />
           </Route>
+          <Route path="*">
+            <p>Ooops, that URL is unknown</p>
+          </Route>
         </Switch>
       </main>
       <footer>
