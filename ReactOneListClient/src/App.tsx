@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Switch } from 'react-router'
 import logo from './images/sdg-logo.png'
 import { TodoList } from './TodoList'
 
@@ -17,7 +18,11 @@ export function App() {
         <h1>One List</h1>
       </header>
       <main>
-        <TodoList />
+        <Switch>
+          <Route exact path="/">
+            <TodoList />
+          </Route>
+        </Switch>
       </main>
       <footer>
         <p>
