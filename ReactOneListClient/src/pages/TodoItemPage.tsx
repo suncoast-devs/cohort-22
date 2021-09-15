@@ -49,6 +49,13 @@ export function TodoItemPage() {
     }
   }
 
+  // Since the default state has an id that is undefined
+  // render NOTHING until there is an id -- that only happens
+  // once we load from the API
+  if (!todoItem.id) {
+    return null
+  }
+
   return (
     <div>
       <p>
