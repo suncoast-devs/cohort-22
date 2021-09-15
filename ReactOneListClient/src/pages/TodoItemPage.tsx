@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { TodoItemType } from '../App'
 
 export function TodoItemPage() {
+  const history = useHistory()
   //                       Define the structure
   //                       of our params. It is
   //                       an object with one
@@ -36,12 +37,23 @@ export function TodoItemPage() {
     [params.id]
   )
 
+  async function deleteTodoItem() {
+    const response = await axios.delete(
+      `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort22`
+    )
+
+    if (response.status === 204) {
+      // Redirect back to the home page!
+      history.push('/')
+    }
+  }
+
   return (
     <div>
       <p className={todoItem.complete ? 'completed' : ''}>{todoItem.text}</p>
       <p>Created: {todoItem.created_at}</p>
       <p>Updated: {todoItem.updated_at}</p>
-      <button>Delete</button>
+      <button onClick={deleteTodoItem}>Delete</button>
     </div>
   )
 }
