@@ -5,11 +5,11 @@ import { TodoItemPage } from './pages/TodoItemPage'
 import { TodoList } from './pages/TodoList'
 
 export type TodoItemType = {
-  id: number
+  id: number | undefined
   text: string
   complete: boolean
-  updated_at: Date
-  completed_at: Date
+  updated_at: Date | undefined
+  created_at: Date | undefined
 }
 
 export function App() {
