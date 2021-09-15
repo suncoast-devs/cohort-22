@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import { TodoItemType } from '../App'
 
 export function TodoItemPage() {
@@ -50,6 +51,9 @@ export function TodoItemPage() {
 
   return (
     <div>
+      <p>
+        <Link to="/">Home</Link>
+      </p>
       <p className={todoItem.complete ? 'completed' : ''}>{todoItem.text}</p>
       <p>Created: {todoItem.created_at}</p>
       <p>Updated: {todoItem.updated_at}</p>
