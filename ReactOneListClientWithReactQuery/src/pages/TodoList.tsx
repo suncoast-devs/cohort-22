@@ -1,32 +1,34 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TodoItem } from '../components/TodoItem'
 import { TodoItemType } from '../App'
+import { useQuery } from 'react-query'
+
+async function getTodos() {
+  //                               This describes the format of `data`
+  //                               vvvvvvvvvvvvvv
+  const response = await axios.get<TodoItemType[]>(
+    'https://one-list-api.herokuapp.com/items?access_token=cohort22'
+  )
+
+  return response.data
+}
 
 export function TodoList() {
-  const [todoItems, setTodoItems] = useState<TodoItemType[]>([])
+  // prettier-ignore
+  //
+  //    The data returned from axios
+  //       |
+  //       |                   Function to let us reload the data (renamed)
+  //       |                      |
+  //       |                      |                  Unique identifier for this query
+  //       |                      |                     |
+  //       |                      |                     |     Function that returns a Promise
+  //       |                      |                     |       |
+  //       v                      v                     v       v
+  const { data: todoItems = [], refetch } = useQuery('todos', getTodos)
+
   const [newTodoText, setNewTodoText] = useState('')
-
-  function loadAllTheItems() {
-    //
-    //
-    // Our async function inside!
-    async function fetchListOfItems() {
-      const response = await axios.get(
-        'https://one-list-api.herokuapp.com/items?access_token=cohort22'
-      )
-
-      if (response.status === 200) {
-        setTodoItems(response.data)
-      }
-    }
-    //
-    //
-    fetchListOfItems()
-  }
-
-  // useEffect has a non-async function
-  useEffect(loadAllTheItems, [])
 
   async function handleCreateNewTodoItem() {
     const body = {
@@ -39,7 +41,7 @@ export function TodoList() {
     )
 
     if (response.status === 201) {
-      loadAllTheItems()
+      refetch()
     }
   }
 
@@ -51,7 +53,7 @@ export function TodoList() {
             <TodoItem
               key={todoItem.id}
               todoItem={todoItem}
-              reloadItems={loadAllTheItems}
+              reloadItems={() => refetch()}
             />
           )
         })}
