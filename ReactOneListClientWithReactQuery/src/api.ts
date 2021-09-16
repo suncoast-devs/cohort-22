@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useMutation, useQuery } from 'react-query'
 import { TodoItemType } from './App'
 
 const BASE_URL = 'https://one-list-api.herokuapp.com'
@@ -46,4 +47,26 @@ export async function toggleItemComplete(
   })
 
   return response
+}
+
+export function useDeleteItemMutation(id: string, onSuccess: () => void) {
+  return useMutation(() => deleteOneTodo(id), {
+    onSuccess,
+  })
+}
+
+// Null Object Pattern
+const EmptyTodoItem: TodoItemType = {
+  id: undefined,
+  text: '',
+  complete: false,
+  updated_at: undefined,
+  created_at: undefined,
+}
+
+export function useLoadOneItem(id: string) {
+  const { data: todoItem = EmptyTodoItem, isLoading: isTodoItemLoading } =
+    useQuery(['todo', id], () => getOneTodo(id))
+
+  return { todoItem, isTodoItemLoading }
 }
