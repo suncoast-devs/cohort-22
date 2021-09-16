@@ -26,7 +26,7 @@ export function TodoList() {
   //       |                      |                     |     Function that returns a Promise
   //       |                      |                     |       |
   //       v                      v                     v       v
-  const { data: todoItems = [], refetch } = useQuery('todos', getTodos)
+  const { data: todoItems = [], refetch } = useQuery('todos', () => getTodos())
 
   const [newTodoText, setNewTodoText] = useState('')
 
