@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { TodoItemType } from './App'
 
-const BASE_URL = 'https://one-list-api.herokuapp.com/items'
+const BASE_URL = 'https://one-list-api.herokuapp.com'
 
 export async function getOneTodo(id: string) {
   const response = await axios.get<TodoItemType>(
-    `${BASE_URL}/${id}?access_token=cohort22`
+    `${BASE_URL}/items/${id}?access_token=cohort22`
   )
 
   return response.data
