@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { TodoItem } from '../components/TodoItem'
 import { TodoItemType } from '../App'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
 async function getTodos() {
   //                               This describes the format of `data`
@@ -14,6 +14,15 @@ async function getTodos() {
   return response.data
 }
 
+async function createNewTodoItem(newTodoText: string) {
+  const response = await axios.post(
+    'https://one-list-api.herokuapp.com/items?access_token=cohort22',
+    { item: { text: newTodoText } }
+  )
+
+  return response
+}
+
 export function TodoList() {
   // prettier-ignore
   //
@@ -21,29 +30,32 @@ export function TodoList() {
   //       |
   //       |                   Function to let us reload the data (renamed)
   //       |                      |
-  //       |                      |                  Unique identifier for this query
-  //       |                      |                     |
-  //       |                      |                     |     Function that returns a Promise
-  //       |                      |                     |       |
-  //       v                      v                     v       v
-  const { data: todoItems = [], refetch } = useQuery('todos', () => getTodos())
+  //       |                      |                                Unique identifier for this query
+  //       |                      |                                   |
+  //       |                      |                                   |     Function that returns a Promise
+  //       |                      |                                   |       |
+  //       v                      v                                   v       v
+  const { data: todoItems = [], refetch: refetchTodos } = useQuery('todos', () => getTodos())
+
+  const todoItemMutation = useMutation(
+    (newTodoText: string) => createNewTodoItem(newTodoText),
+    {
+      // options
+      onSuccess: function () {
+        refetchTodos()
+
+        setNewTodoText('')
+      },
+    }
+  )
+
+  // or function style
+  //
+  // const todoItemMutation = useMutation(function (newTodoText: string) {
+  //   return createNewTodoItem(newTodoText)
+  // })
 
   const [newTodoText, setNewTodoText] = useState('')
-
-  async function handleCreateNewTodoItem() {
-    const body = {
-      item: { text: newTodoText },
-    }
-
-    const response = await axios.post(
-      'https://one-list-api.herokuapp.com/items?access_token=cohort22',
-      body
-    )
-
-    if (response.status === 201) {
-      refetch()
-    }
-  }
 
   return (
     <>
@@ -53,7 +65,7 @@ export function TodoList() {
             <TodoItem
               key={todoItem.id}
               todoItem={todoItem}
-              reloadItems={() => refetch()}
+              reloadItems={() => refetchTodos()}
             />
           )
         })}
@@ -64,7 +76,7 @@ export function TodoList() {
           // *I* will tell you what to do
           event.preventDefault()
 
-          handleCreateNewTodoItem()
+          todoItemMutation.mutate(newTodoText)
         }}
       >
         <input

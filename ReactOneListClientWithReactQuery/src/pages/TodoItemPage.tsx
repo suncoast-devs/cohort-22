@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { TodoItemType } from '../App'
@@ -11,6 +11,14 @@ async function getOneTodo(id: string) {
   )
 
   return response.data
+}
+
+async function deleteOneTodo(id: string) {
+  const response = await axios.delete(
+    `https://one-list-api.herokuapp.com/items/${id}?access_token=cohort22`
+  )
+
+  return response
 }
 
 // Null Object Pattern
@@ -36,16 +44,12 @@ export function TodoItemPage() {
     () => getOneTodo(params.id)
   )
 
-  async function deleteTodoItem() {
-    const response = await axios.delete(
-      `https://one-list-api.herokuapp.com/items/${params.id}?access_token=cohort22`
-    )
-
-    if (response.status === 204) {
-      // Redirect back to the home page!
+  const deleteMutation = useMutation((id: string) => deleteOneTodo(id), {
+    onSuccess: function () {
+      // Send user back to the homepage
       history.push('/')
-    }
-  }
+    },
+  })
 
   if (isLoading) {
     return null
@@ -59,7 +63,13 @@ export function TodoItemPage() {
       <p className={todoItem.complete ? 'completed' : ''}>{todoItem.text}</p>
       <p>Created: {todoItem.created_at}</p>
       <p>Updated: {todoItem.updated_at}</p>
-      <button onClick={deleteTodoItem}>Delete</button>
+      <button
+        onClick={function () {
+          deleteMutation.mutate(params.id)
+        }}
+      >
+        Delete
+      </button>
     </div>
   )
 }
