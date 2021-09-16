@@ -23,7 +23,7 @@ export async function getTodos() {
   //                               This describes the format of `data`
   //                               vvvvvvvvvvvvvv
   const response = await axios.get<TodoItemType[]>(
-    '${BASE_URL}/items?access_token=cohort22'
+    `${BASE_URL}/items?access_token=cohort22`
   )
 
   return response.data
