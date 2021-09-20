@@ -3,7 +3,8 @@ import { useQuery } from 'react-query'
 
 import tacoTuesday from '../images/taco-tuesday.svg'
 import map from '../images/map.png'
-import { CSSStarsProperties, RestaurantType } from '../types'
+import { RestaurantType } from '../types'
+import { SingleRestaurantFromList } from '../components/SingleRestaurantFromList'
 
 export function Restaurants() {
   const { data: restaurants = [] } = useQuery<RestaurantType[]>(
@@ -32,18 +33,10 @@ export function Restaurants() {
       <ul className="results">
         {restaurants.map(function (restaurant) {
           return (
-            <li key={restaurant.id}>
-              <h2>{restaurant.name}</h2>
-              <p>
-                <span
-                  className="stars"
-                  style={{ '--rating': 4.7 } as CSSStarsProperties}
-                  aria-label="Star rating of this location is 4.7 out of 5."
-                ></span>
-                (2,188)
-              </p>
-              <address>{restaurant.address}</address>
-            </li>
+            <SingleRestaurantFromList
+              key={restaurant.id}
+              restaurant={restaurant}
+            />
           )
         })}
       </ul>
