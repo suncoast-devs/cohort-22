@@ -31,11 +31,18 @@ namespace TacoTuesday.Controllers
         // Returns a list of all your Restaurants
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants(string filter)
         {
             // Uses the database context in `_context` to request all of the Restaurants, sort
             // them by row id and return them as a JSON array.
-            return await _context.Restaurants.OrderBy(row => row.Id).ToListAsync();
+            if (filter == null) {
+              return await _context.Restaurants.OrderBy(row => row.Id).ToListAsync();
+            } else {
+                // Return the filtered list of restaurants
+                return await _context.Restaurants.OrderBy(row => row.Id).
+                   Where(restaurant => restaurant.Name.ToLower().Contains(filter.ToLower())).
+                   ToListAsync();
+            }
         }
 
         // GET: api/Restaurants/5
