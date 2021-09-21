@@ -5,7 +5,7 @@ export interface CSSStarsProperties extends CSSProperties {
 }
 
 export type RestaurantType = {
-  id: number
+  id: number | undefined
   name: string
   description: string
   address: string

@@ -1,6 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutation } from 'react-query'
+import { useHistory } from 'react-router'
+import { RestaurantType } from '../types'
+
+async function submitNewRestaurant(restaurantToCreate: RestaurantType) {
+  const response = await fetch('/api/Restaurants', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(restaurantToCreate),
+  })
+
+  return response.json()
+}
 
 export function NewRestaurant() {
+  const history = useHistory()
+  const [newRestaurant, setNewRestaurant] = useState<RestaurantType>({
+    id: undefined,
+    name: '',
+    description: '',
+    address: '',
+    telephone: '',
+  })
+  const createNewRestaurant = useMutation(submitNewRestaurant, {
+    onSuccess: function () {
+      // This happens if we successfully update the restaurant
+      history.push('/')
+    },
+  })
+
+  function handleStringFieldChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const value = event.target.value
+    const fieldName = event.target.name
+
+    const updatedRestaurant = { ...newRestaurant, [fieldName]: value }
+
+    setNewRestaurant(updatedRestaurant)
+  }
+
   return (
     <main className="page">
       <nav>
@@ -9,25 +48,48 @@ export function NewRestaurant() {
         </a>
         <h2>Add a Restaurant</h2>
       </nav>
-      <form action="#">
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          createNewRestaurant.mutate(newRestaurant)
+        }}
+      >
         <p className="form-input">
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            value={newRestaurant.name}
+            onChange={handleStringFieldChange}
+          />
         </p>
         <p className="form-input">
           <label htmlFor="description">Description</label>
-          <textarea name="description"></textarea>
+          <textarea
+            name="description"
+            value={newRestaurant.description}
+            onChange={handleStringFieldChange}
+          ></textarea>
           <span className="note">
             Enter a brief description of the restaurant.
           </span>
         </p>
         <p className="form-input">
           <label htmlFor="name">Address</label>
-          <textarea name="address"></textarea>
+          <textarea
+            name="address"
+            value={newRestaurant.address}
+            onChange={handleStringFieldChange}
+          ></textarea>
         </p>
         <p className="form-input">
           <label htmlFor="name">Telephone</label>
-          <input type="tel" name="telephone" />
+          <input
+            type="tel"
+            name="telephone"
+            value={newRestaurant.telephone}
+            onChange={handleStringFieldChange}
+          />
         </p>
         <p className="form-input">
           <label htmlFor="picture">Picture</label>
