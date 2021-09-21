@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import avatar from './images/avatar.png'
 import { NewRestaurant } from './pages/NewRestaurant'
+import { Restaurant } from './pages/Restaurant'
 import { Restaurants } from './pages/Restaurants'
 
 export function App() {
@@ -29,6 +30,9 @@ export function App() {
         </Route>
         <Route exact path="/new">
           <NewRestaurant />
+        </Route>
+        <Route exact path="/restaurants/:id">
+          <Restaurant />
         </Route>
       </Switch>
       <footer>

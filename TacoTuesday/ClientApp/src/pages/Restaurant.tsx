@@ -1,14 +1,48 @@
 import React from 'react'
-import { CSSStarsProperties } from '../types'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
+import { CSSStarsProperties, RestaurantType } from '../types'
+
+async function loadOneRestaurant(id: string) {
+  const response = await fetch(`/api/restaurants/${id}`)
+
+  if (response.ok) {
+    return response.json()
+  } else {
+    throw await response.json()
+  }
+}
+
+// Null Object Pattern
+const NullRestaurant: RestaurantType = {
+  id: undefined,
+  name: '',
+  address: '',
+  description: '',
+  telephone: '',
+}
 
 export function Restaurant() {
+  const { id } = useParams<{ id: string }>()
+
+  const { data: restaurant = NullRestaurant } = useQuery<RestaurantType>(
+    ['one-restaurant', id],
+    () => loadOneRestaurant(id)
+  )
+
+  // Guard clause approach
+  // if (restaurant === undefined) {
+  //   return null
+  // }
+
   return (
     <main className="page">
       <nav>
-        <a href="/">
+        <Link to="/">
           <i className="fa fa-home"></i>
-        </a>
-        <h2>Loli&apos;s Mexican Cravings</h2>
+        </Link>
+        <h2>{restaurant.name}</h2>
       </nav>
       <p>
         <span
@@ -18,9 +52,9 @@ export function Restaurant() {
         ></span>
         (2,188)
       </p>
-      <address>8005 Benjamin Rd, Tampa, FL 33634</address>
+      <address>{restaurant.address}</address>
       <hr />
-      <h3>Reviews for Loli&apos;s Mexican Cravings</h3>
+      <h3>Reviews for {restaurant.name} </h3>
       <ul className="reviews">
         <li>
           <div className="author">
