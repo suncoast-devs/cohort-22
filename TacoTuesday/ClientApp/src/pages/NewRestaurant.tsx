@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { APIError, RestaurantType } from '../types'
 
 async function submitNewRestaurant(restaurantToCreate: RestaurantType) {
@@ -53,9 +54,9 @@ export function NewRestaurant() {
   return (
     <main className="page">
       <nav>
-        <a href="/">
+        <Link to="/">
           <i className="fa fa-home"></i>
-        </a>
+        </Link>
         <h2>Add a Restaurant</h2>
       </nav>
       <form
