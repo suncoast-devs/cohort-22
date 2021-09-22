@@ -1,11 +1,25 @@
-import React from 'react'
-import { useQuery } from 'react-query'
+import React, { useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { CSSStarsProperties, RestaurantType } from '../types'
+import { CSSStarsProperties, RestaurantType, ReviewType } from '../types'
 
 async function loadOneRestaurant(id: string) {
   const response = await fetch(`/api/restaurants/${id}`)
+
+  if (response.ok) {
+    return response.json()
+  } else {
+    throw await response.json()
+  }
+}
+
+async function submitNewReview(review: ReviewType) {
+  const response = await fetch(`/api/Reviews`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(review),
+  })
 
   if (response.ok) {
     return response.json()
@@ -26,11 +40,47 @@ const NullRestaurant: RestaurantType = {
 
 export function Restaurant() {
   const { id } = useParams<{ id: string }>()
+  const [newReview, setNewReview] = useState<ReviewType>({
+    id: undefined,
+    body: '',
+    stars: 5,
+    summary: '',
+    createdAt: new Date(),
+    restaurantId: Number(id),
+  })
 
-  const { data: restaurant = NullRestaurant } = useQuery<RestaurantType>(
-    ['one-restaurant', id],
-    () => loadOneRestaurant(id)
-  )
+  const { refetch: reloadRestaurant, data: restaurant = NullRestaurant } =
+    useQuery<RestaurantType>(['one-restaurant', id], () =>
+      loadOneRestaurant(id)
+    )
+
+  const createNewReview = useMutation(submitNewReview, {
+    onSuccess: function () {
+      reloadRestaurant()
+
+      // Clear out the review
+      setNewReview({
+        ...newReview,
+        body: '',
+        stars: 5,
+        summary: '',
+        createdAt: new Date(),
+      })
+    },
+  })
+
+  function handleNewReviewTextFieldChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const name = event.target.name
+    const value = event.target.value
+
+    setNewReview({ ...newReview, [name]: value })
+  }
+
+  function handleStarRadioButton(newStars: number) {
+    setNewReview({ ...newReview, stars: newStars })
+  }
 
   // Guard clause approach
   // if (restaurant === undefined) {
@@ -77,10 +127,21 @@ export function Restaurant() {
         ))}
       </ul>
       <h3>Enter your own review</h3>
-      <form action="#">
+      <form
+        onSubmit={function (event) {
+          event.preventDefault()
+
+          createNewReview.mutate(newReview)
+        }}
+      >
         <p className="form-input">
           <label htmlFor="summary">Summary</label>
-          <input type="text" name="summary" />
+          <input
+            type="text"
+            name="summary"
+            value={newReview.summary}
+            onChange={handleNewReviewTextFieldChange}
+          />
           <span className="note">
             Enter a brief summary of your review. Example:{' '}
             <strong>Great food, good prices.</strong>
@@ -88,18 +149,57 @@ export function Restaurant() {
         </p>
         <p className="form-input">
           <label htmlFor="body">Review</label>
-          <textarea name="body"></textarea>
+          <textarea
+            name="body"
+            value={newReview.body}
+            onChange={handleNewReviewTextFieldChange}
+          ></textarea>
         </p>
         <div className="rating">
-          <input id="star-rating-1" type="radio" name="stars" value="1" />
+          <input
+            id="star-rating-1"
+            type="radio"
+            name="stars"
+            value="1"
+            checked={newReview.stars === 1}
+            onChange={() => handleStarRadioButton(1)}
+          />
           <label htmlFor="star-rating-1">1 star</label>
-          <input id="star-rating-2" type="radio" name="stars" value="2" />
+          <input
+            id="star-rating-2"
+            type="radio"
+            name="stars"
+            value="2"
+            checked={newReview.stars === 2}
+            onChange={() => handleStarRadioButton(2)}
+          />
           <label htmlFor="star-rating-2">2 stars</label>
-          <input id="star-rating-3" type="radio" name="stars" value="3" />
+          <input
+            id="star-rating-3"
+            type="radio"
+            name="stars"
+            value="3"
+            checked={newReview.stars === 3}
+            onChange={() => handleStarRadioButton(3)}
+          />
           <label htmlFor="star-rating-3">3 stars</label>
-          <input id="star-rating-4" type="radio" name="stars" value="4" />
+          <input
+            id="star-rating-4"
+            type="radio"
+            name="stars"
+            value="4"
+            checked={newReview.stars === 4}
+            onChange={() => handleStarRadioButton(4)}
+          />
           <label htmlFor="star-rating-4">4 stars</label>
-          <input id="star-rating-5" type="radio" name="stars" value="5" />
+          <input
+            id="star-rating-5"
+            type="radio"
+            name="stars"
+            value="5"
+            checked={newReview.stars === 5}
+            onChange={() => handleStarRadioButton(5)}
+          />
           <label htmlFor="star-rating-5">5 stars</label>
 
           <div className="star-rating">
