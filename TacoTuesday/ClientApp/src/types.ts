@@ -10,6 +10,7 @@ export type RestaurantType = {
   description: string
   address: string
   telephone: string
+  reviews: ReviewType[]
 }
 
 export type APIError = {
@@ -18,4 +19,13 @@ export type APIError = {
   title: string
   traceId: string
   type: string
+}
+
+export type ReviewType = {
+  id: number | undefined
+  summary: string
+  body: string
+  stars: number
+  createdAt: Date
+  restaurantId: number
 }

@@ -26,6 +26,7 @@ export function NewRestaurant() {
     description: '',
     address: '',
     telephone: '',
+    reviews: [],
   })
   const [errorMessage, setErrorMessage] = useState('')
   const createNewRestaurant = useMutation(submitNewRestaurant, {
