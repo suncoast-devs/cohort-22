@@ -87,7 +87,12 @@ export function SignUp() {
         </p>
         <p className="form-input">
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            value={newUser.password}
+            onChange={handleStringFieldChange}
+          />
         </p>
         <p>
           <input type="submit" value="Submit" />
