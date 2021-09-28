@@ -69,6 +69,7 @@ namespace TacoTuesday.Controllers
             var restaurant = await _context.Restaurants.
                                 Where(restaurant => restaurant.Id == id).
                                 Include(restaurant => restaurant.Reviews).
+                                ThenInclude(review => review.User).
                                 FirstOrDefaultAsync();
 
             // If we didn't find anything, we receive a `null` in return

@@ -28,6 +28,20 @@ export type ReviewType = {
   stars: number
   createdAt: Date
   restaurantId: number
+  user: {
+    id: number
+    fullName: string
+    email: string
+  }
+}
+
+export type NewReviewType = {
+  id: number | undefined
+  summary: string
+  body: string
+  stars: number
+  createdAt: Date
+  restaurantId: number
 }
 
 export type NewUserType = {
