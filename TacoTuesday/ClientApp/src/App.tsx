@@ -10,22 +10,9 @@ import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 
 export function App() {
-  const user = getUser()
-
   return (
     <>
-      <header>
-        <ul>
-          <li>
-            <nav>{isLoggedIn() ? <LoggedInNav /> : <SignedOutNav />}</nav>
-          </li>
-          {isLoggedIn() ? (
-            <li className="avatar">
-              <img src={avatar} alt={user.fullName} height="64" width="64" />
-            </li>
-          ) : null}
-        </ul>
-      </header>
+      <header>{isLoggedIn() ? <LoggedInNav /> : <SignedOutNav />}</header>
       <Switch>
         <Route exact path="/">
           <Restaurants />
@@ -62,30 +49,41 @@ function LoggedInNav() {
   }
 
   return (
-    <>
-      <Link to="/new">
-        <i className="fa fa-plus"></i> Restaurant
-      </Link>
-      <a
-        href="/"
-        className="link"
-        onClick={function (event) {
-          event.preventDefault()
-          handleLogout()
-        }}
-      >
-        Sign out
-      </a>
-      <p>Welcome back, {user.fullName}!</p>
-    </>
+    <ul>
+      <li>
+        <nav>
+          <Link to="/new">
+            <i className="fa fa-plus"></i> Restaurant
+          </Link>
+          <a
+            href="/"
+            className="link"
+            onClick={function (event) {
+              event.preventDefault()
+              handleLogout()
+            }}
+          >
+            Sign out
+          </a>
+          <p>Welcome back, {user.fullName}!</p>
+        </nav>
+      </li>
+      <li className="avatar">
+        <img src={avatar} alt={user.fullName} height="64" width="64" />
+      </li>
+    </ul>
   )
 }
 
 function SignedOutNav() {
   return (
-    <>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/signup">Sign Up</Link>
-    </>
+    <ul>
+      <li>
+        <nav>
+          <Link to="/signin">Sign In</Link>
+          <Link to="/signup">Sign Up</Link>
+        </nav>
+      </li>
+    </ul>
   )
 }
