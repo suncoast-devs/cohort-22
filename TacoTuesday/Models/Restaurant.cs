@@ -14,10 +14,16 @@ namespace TacoTuesday.Models
 
         [Required(ErrorMessage = "You must provide an address.")]
         public string Address { get; set; }
-        
+
         public string Telephone { get; set; }
 
         // One restaurant "has many" reviews
         public List<Review> Reviews { get; set; }
+
+        // Adds the database column for the associated user
+        public int UserId { get; set; }
+
+        // The actual associated object
+        public User User { get; set; }
     }
 }

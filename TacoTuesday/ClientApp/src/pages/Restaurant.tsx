@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
 import { CSSStarsProperties, RestaurantType, ReviewType } from '../types'
-import { isLoggedIn } from '../auth'
+import { authHeader, isLoggedIn } from '../auth'
 
 async function loadOneRestaurant(id: string) {
   const response = await fetch(`/api/restaurants/${id}`)
@@ -19,7 +19,10 @@ async function loadOneRestaurant(id: string) {
 async function submitNewReview(review: ReviewType) {
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: {
+      'content-type': 'application/json',
+      Authorization: authHeader(),
+    },
     body: JSON.stringify(review),
   })
 

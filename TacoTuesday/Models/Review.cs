@@ -13,5 +13,11 @@ namespace TacoTuesday.Models
         // Review "belongs to" one restaurant
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
+
+        // Adds the database column for the associated user
+        public int UserId { get; set; }
+
+        // The actual associated object
+        public User User { get; set; }
     }
 }

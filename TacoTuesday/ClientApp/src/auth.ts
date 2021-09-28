@@ -17,7 +17,7 @@ import { LoginSuccess } from './types'
 export function authHeader() {
   const auth = authFromStorage()
 
-  return auth.token ? `Bearer ${auth.token}` : null
+  return auth.token ? `Bearer ${auth.token}` : ''
 }
 
 // Save the authentication received from the API
