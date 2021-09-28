@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
+import { getUser, isLoggedIn, logout } from './auth'
 import avatar from './images/avatar.png'
 import { NewRestaurant } from './pages/NewRestaurant'
 import { Restaurant } from './pages/Restaurant'
@@ -9,23 +10,20 @@ import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 
 export function App() {
+  const user = getUser()
+
   return (
     <>
       <header>
         <ul>
           <li>
-            <nav>
-              <Link to="/new">
-                <i className="fa fa-plus"></i> Restaurant
-              </Link>
-              <Link to="/signin">Sign In</Link>
-              <Link to="/signup">Sign Up</Link>
-              <p>Welcome back, Steve!</p>
-            </nav>
+            <nav>{isLoggedIn() ? <LoggedInNav /> : <SignedOutNav />}</nav>
           </li>
-          <li className="avatar">
-            <img src={avatar} alt="Steve's Avatar" height="64" width="64" />
-          </li>
+          {isLoggedIn() ? (
+            <li className="avatar">
+              <img src={avatar} alt={user.fullName} height="64" width="64" />
+            </li>
+          ) : null}
         </ul>
       </header>
       <Switch>
@@ -50,6 +48,44 @@ export function App() {
           Built with <i className="fa fa-heart"></i> in St Petersburg, Florida.
         </p>
       </footer>
+    </>
+  )
+}
+
+function LoggedInNav() {
+  const user = getUser()
+
+  function handleLogout() {
+    logout()
+
+    window.location.assign('/')
+  }
+
+  return (
+    <>
+      <Link to="/new">
+        <i className="fa fa-plus"></i> Restaurant
+      </Link>
+      <a
+        href="/"
+        className="link"
+        onClick={function (event) {
+          event.preventDefault()
+          handleLogout()
+        }}
+      >
+        Sign out
+      </a>
+      <p>Welcome back, {user.fullName}!</p>
+    </>
+  )
+}
+
+function SignedOutNav() {
+  return (
+    <>
+      <Link to="/signin">Sign In</Link>
+      <Link to="/signup">Sign Up</Link>
     </>
   )
 }
