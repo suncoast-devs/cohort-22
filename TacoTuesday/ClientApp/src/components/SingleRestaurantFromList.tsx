@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { CSSStarsProperties, RestaurantType } from '../types'
+import { RestaurantType } from '../types'
+import { Stars } from './Stars'
 
 export function SingleRestaurantFromList(props: SingleRestaurantFromListProps) {
   return (
@@ -11,12 +12,8 @@ export function SingleRestaurantFromList(props: SingleRestaurantFromListProps) {
         </Link>
       </h2>
       <p>
-        <span
-          className="stars"
-          style={{ '--rating': 4.7 } as CSSStarsProperties}
-          aria-label="Star rating of this location is 4.7 out of 5."
-        ></span>
-        ({props.restaurant.reviews.length})
+        <Stars restaurant={props.restaurant} />(
+        {props.restaurant.reviews.length})
       </p>
       <address>{props.restaurant.address}</address>
     </li>

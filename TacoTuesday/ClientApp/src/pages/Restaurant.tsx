@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
 import { CSSStarsProperties, NewReviewType, RestaurantType } from '../types'
 import { authHeader, isLoggedIn } from '../auth'
+import { Stars } from '../components/Stars'
 
 async function loadOneRestaurant(id: string) {
   const response = await fetch(`/api/restaurants/${id}`)
@@ -103,12 +104,7 @@ export function Restaurant() {
         <h2>{restaurant.name}</h2>
       </nav>
       <p>
-        <span
-          className="stars"
-          style={{ '--rating': 4.7 } as CSSStarsProperties}
-          aria-label="Star rating of this location is 4.7 out of 5."
-        ></span>
-        ({restaurant.reviews.length})
+        <Stars restaurant={restaurant} />({restaurant.reviews.length})
       </p>
       <address>{restaurant.address}</address>
       <hr />
