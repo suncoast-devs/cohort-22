@@ -5,7 +5,7 @@ import { Stars } from './Stars'
 
 export function SingleRestaurantFromList(props: SingleRestaurantFromListProps) {
   return (
-    <li>
+    <li style={{ backgroundColor: props.selectedOnMap ? 'green' : undefined }}>
       <h2>
         <Link to={`/restaurants/${props.restaurant.id}`}>
           {props.restaurant.name}
@@ -21,4 +21,5 @@ export function SingleRestaurantFromList(props: SingleRestaurantFromListProps) {
 }
 type SingleRestaurantFromListProps = {
   restaurant: RestaurantType
+  selectedOnMap: boolean
 }
