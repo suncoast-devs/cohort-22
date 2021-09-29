@@ -15,6 +15,9 @@ namespace TacoTuesday.Models
         [Required(ErrorMessage = "You must provide an address.")]
         public string Address { get; set; }
 
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         public string Telephone { get; set; }
 
         // One restaurant "has many" reviews
