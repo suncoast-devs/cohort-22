@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
 
 import { authHeader } from '../auth'
-import { APIError, RestaurantType } from '../types'
+import { APIError, NewRestaurantType, UploadResponse } from '../types'
 
-async function submitNewRestaurant(restaurantToCreate: RestaurantType) {
+async function submitNewRestaurant(restaurantToCreate: NewRestaurantType) {
   const response = await fetch('/api/Restaurants', {
     method: 'POST',
     headers: {
@@ -26,7 +26,7 @@ async function submitNewRestaurant(restaurantToCreate: RestaurantType) {
 
 export function NewRestaurant() {
   const history = useHistory()
-  const [newRestaurant, setNewRestaurant] = useState<RestaurantType>({
+  const [newRestaurant, setNewRestaurant] = useState<NewRestaurantType>({
     id: undefined,
     name: '',
     description: '',

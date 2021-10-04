@@ -41,6 +41,9 @@ const NullRestaurant: RestaurantType = {
   address: '',
   description: '',
   telephone: '',
+  latitude: 0,
+  longitude: 0,
+  photoURL: '',
   reviews: [],
 }
 

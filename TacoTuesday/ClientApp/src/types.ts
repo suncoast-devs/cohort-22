@@ -16,6 +16,8 @@ export type RestaurantType = {
   reviews: ReviewType[]
 }
 
+export type NewRestaurantType = Omit<RestaurantType, 'latitude' | 'longitude'>
+
 export type APIError = {
   errors: Record<string, string[]>
   status: number
