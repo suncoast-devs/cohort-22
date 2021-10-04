@@ -20,6 +20,7 @@
     "date-fns": "^2.24.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-dropzone": "^11.4.2",
     "react-map-gl": "^6.1.17",
     "react-query": "^3.24.3",
     "react-router": "^5.2.1",

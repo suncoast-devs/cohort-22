@@ -12,6 +12,7 @@ export type RestaurantType = {
   telephone: string
   latitude: number
   longitude: number
+  photoURL: string
   reviews: ReviewType[]
 }
 
@@ -66,4 +67,8 @@ export type LoggedInUser = {
 export type LoginSuccess = {
   token: string
   user: LoggedInUser
+}
+
+export type UploadResponse = {
+  url: string
 }

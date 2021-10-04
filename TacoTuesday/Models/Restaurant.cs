@@ -20,6 +20,8 @@ namespace TacoTuesday.Models
 
         public string Telephone { get; set; }
 
+        public string PhotoURL { get; set; }
+
         // One restaurant "has many" reviews
         public List<Review> Reviews { get; set; }
 
