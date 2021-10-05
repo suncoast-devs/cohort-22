@@ -186,14 +186,33 @@ namespace TacoTuesday.Controllers
         // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
         //
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteRestaurant(int id)
         {
             // Find this restaurant by looking for the specific id
             var restaurant = await _context.Restaurants.FindAsync(id);
+            // Use this instead to give the user a 404
+            // var restaurant = await _context.Restaurants.Where(restaurant => restaurant.UserId == GetCurrentUserId()).FirstOrDefaultAsync();
             if (restaurant == null)
             {
                 // There wasn't a restaurant with that id so return a `404` not found
                 return NotFound();
+            }
+
+            // If the current user (which we trust the ID since it comes from the JWT)
+            // is exactly the same ID recorded in the restaurant, then allow this.
+            // Otherwise, if they don't match, tell the user "UNAUTHORIZED" and do not proceed.
+            if (restaurant.UserId != GetCurrentUserId())
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 401,
+                    errors = new List<string>() { "Not Authorized" }
+                };
+
+                // Return our error with the custom response
+                return Unauthorized(response);
             }
 
             // Tell the database we want to remove this record

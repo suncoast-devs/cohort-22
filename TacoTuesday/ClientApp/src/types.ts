@@ -6,6 +6,7 @@ export interface CSSStarsProperties extends CSSProperties {
 
 export type RestaurantType = {
   id: number | undefined
+  userId: number
   name: string
   description: string
   address: string
@@ -16,7 +17,10 @@ export type RestaurantType = {
   reviews: ReviewType[]
 }
 
-export type NewRestaurantType = Omit<RestaurantType, 'latitude' | 'longitude'>
+export type NewRestaurantType = Omit<
+  RestaurantType,
+  'latitude' | 'longitude' | 'userId'
+>
 
 export type APIError = {
   errors: Record<string, string[]>
