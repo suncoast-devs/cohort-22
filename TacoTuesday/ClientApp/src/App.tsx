@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import { getUser, isLoggedIn, logout } from './auth'
 import avatar from './images/avatar.png'
+import { EditRestaurant } from './pages/EditRestaurant'
 import { NewRestaurant } from './pages/NewRestaurant'
 import { Restaurant } from './pages/Restaurant'
 import { Restaurants } from './pages/Restaurants'
@@ -22,6 +23,9 @@ export function App() {
         </Route>
         <Route exact path="/restaurants/:id">
           <Restaurant />
+        </Route>
+        <Route exact path="/restaurants/:id/edit">
+          <EditRestaurant />
         </Route>
         <Route exact path="/signin">
           <SignIn />
