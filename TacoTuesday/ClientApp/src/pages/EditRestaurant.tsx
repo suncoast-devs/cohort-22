@@ -11,33 +11,7 @@ import {
   RestaurantType,
   UploadResponse,
 } from '../types'
-
-async function submitEditedRestaurant(restaurantToUpdate: NewRestaurantType) {
-  const response = await fetch(`/api/Restaurants/${restaurantToUpdate.id}`, {
-    method: 'PUT',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: authHeader(),
-    },
-    body: JSON.stringify(restaurantToUpdate),
-  })
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
-
-async function loadOneRestaurant(id: string) {
-  const response = await fetch(`/api/restaurants/${id}`)
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
+import { loadOneRestaurant, submitEditedRestaurant } from '../api'
 
 export function EditRestaurant() {
   const history = useHistory()

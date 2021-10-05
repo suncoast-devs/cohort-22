@@ -1,21 +1,8 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useHistory } from 'react-router'
+import { submitNewUser } from '../api'
 import { APIError, NewUserType } from '../types'
-
-async function submitNewUser(newUser: NewUserType) {
-  const response = await fetch('/api/Users', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(newUser),
-  })
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
 
 export function SignUp() {
   const history = useHistory()
