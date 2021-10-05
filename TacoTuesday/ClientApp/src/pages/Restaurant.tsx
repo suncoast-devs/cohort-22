@@ -4,80 +4,14 @@ import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
 import { CSSStarsProperties, NewReviewType, RestaurantType } from '../types'
-import { authHeader, getUserId, isLoggedIn } from '../auth'
+import { getUserId, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
-
-async function loadOneRestaurant(id: string) {
-  const response = await fetch(`/api/restaurants/${id}`)
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
-
-// Takes a review object and submits it to the API
-//
-// Returns a promise of the JSON response of the API
-// when successful, throws the JSON response of the API
-// when there is a failure.
-async function submitNewReview(review: NewReviewType) {
-  // Calls fetch
-  const response = await fetch(`/api/Reviews`, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: authHeader(),
-    },
-    body: JSON.stringify(review),
-  })
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
-
-async function handleDelete(id: number | undefined) {
-  // If we don't know the id, don't do anything.
-  // This could happen because the restaurant might
-  // have an undefined id before it is loaded. In that
-  // case we don't want to call the API since the URL
-  // won't be correct.
-  if (id === undefined) {
-    return
-  }
-
-  const response = await fetch(`/api/Restaurants/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: authHeader(),
-    },
-  })
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
-
-// Null Object Pattern
-const NullRestaurant: RestaurantType = {
-  id: undefined,
-  userId: 0,
-  name: '',
-  address: '',
-  description: '',
-  telephone: '',
-  latitude: 0,
-  longitude: 0,
-  photoURL: '',
-  reviews: [],
-}
+import {
+  handleDelete,
+  loadOneRestaurant,
+  NullRestaurant,
+  submitNewReview,
+} from '../api'
 
 const dateFormat = "EEEE, MMMM do, yyyy 'at' h:mm aaa"
 

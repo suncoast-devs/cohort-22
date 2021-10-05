@@ -6,23 +6,7 @@ import { useDropzone } from 'react-dropzone'
 
 import { authHeader } from '../auth'
 import { APIError, NewRestaurantType, UploadResponse } from '../types'
-
-async function submitNewRestaurant(restaurantToCreate: NewRestaurantType) {
-  const response = await fetch('/api/Restaurants', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: authHeader(),
-    },
-    body: JSON.stringify(restaurantToCreate),
-  })
-
-  if (response.ok) {
-    return response.json()
-  } else {
-    throw await response.json()
-  }
-}
+import { submitNewRestaurant } from '../api'
 
 export function NewRestaurant() {
   const history = useHistory()
